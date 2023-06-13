@@ -22,19 +22,15 @@ const typeDefs = gql`
   }
 
   type Query {
-    patients: (appointment_id: ID) : Patient
-    appointments: (appointmentId: ID) : Appointment
+    patients(appointment_id: ID) : Patient
+    appointments(appointmentId: ID) : Appointment
   }
 
   type Mutation {
     createPatient(input: PatientInput): Patient
-    createAppointment(): Appointment
-    deletePatient(id: ID!): Patient
-
-
-    
     createAppointment(input: AppointmentInput): Appointment
     updateAppointment(id: ID!, input: AppointmentInput): Appointment
+    deletePatient(id: ID!): Patient
     deleteAppointment(id: ID!): Appointment
   }
 
@@ -47,7 +43,7 @@ const typeDefs = gql`
     email: String!
     insurance: Boolean!
     reason_for_visit: String!
-    appointment: ID
+    appointment: [ID]
   }
 
   input AppointmentInput {
@@ -58,5 +54,6 @@ const typeDefs = gql`
     patient: ID
   }
 `;
+
 
 module.exports = typeDefs;
