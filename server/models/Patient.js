@@ -46,10 +46,12 @@ const patientSchema = new Schema({
     maxlength: 255,
   },
 
-  appointment: {
-    type: Schema.Types.objectId,
-    ref: "Appointment",
-  },
+  appointments:[
+    {
+        type: Schema.Types.objectId,
+        ref: "Appointment",
+      },
+  ] 
 });
 
 const Patient = model("Patient", patientSchema);

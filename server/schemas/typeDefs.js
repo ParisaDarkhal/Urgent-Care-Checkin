@@ -11,7 +11,7 @@ const typeDefs = gql`
     email: String!
     insurance: Boolean!
     reason_for_visit: String!
-    appointment: Appointment
+    appointment: [Appointment]
   }
 
   type Appointment {
@@ -22,15 +22,17 @@ const typeDefs = gql`
   }
 
   type Query {
-    patients: [Patient]
-    patient(id: ID!): Patient
+    patients: (appointment_id: ID) : Patient
+    appointments: (appointmentId: ID) : Appointment
   }
 
   type Mutation {
     createPatient(input: PatientInput): Patient
-    updatePatient(id: ID!, input: PatientInput): Patient
+    createAppointment(): Appointment
     deletePatient(id: ID!): Patient
 
+
+    
     createAppointment(input: AppointmentInput): Appointment
     updateAppointment(id: ID!, input: AppointmentInput): Appointment
     deleteAppointment(id: ID!): Appointment
