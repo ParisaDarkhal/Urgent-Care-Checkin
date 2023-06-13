@@ -1,4 +1,4 @@
-const { Schema, model, default: mongoose } = require("mongoose");
+const { Schema, model} = require("mongoose");
 
 const appointmentSchema = new Schema({
     appt_date: {
@@ -7,23 +7,31 @@ const appointmentSchema = new Schema({
     },
     appt_time: {
         type: Date,
+        required: true,
     },
     //Parisa's suggestion
-    timeSlot: {
-        type: Date,
-        required: true,
-    },
+//     timeSlot: {
+//         type: Date,
+        // added
+//         required: true,
+//     },
+    //Parisa's suggestion
+    // I dont think we dont need it MB
+    // timeSlot: {
+    //     type: Date,
+    //     required: true,
+    // },
     //End Parisa's suggestion
     //   appoitment ID id the phone number
-    referencePhoneNumber: {
-        type: String,
-        required: true,
-    }
-// ITHINK WE HAVE TO UPDATE DEF LINE 62 WITH REFERENCEid
+    // referencePhoneNumber: {
+    //     type: String,
+    //     required: true,
+    // }
+    // // ITHINK WE HAVE TO UPDATE DEF LINE 62 WITH REFERENCEid
 });
 
 // Parisa's suggestion
-const Appointment = mongoose.model("Appointment", appointmentSchema);
+const Appointment = model("Appointment", appointmentSchema);
 // End Parisa's suggestion
 
 module.exports = Appointment;

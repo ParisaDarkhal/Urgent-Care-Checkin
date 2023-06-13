@@ -5,6 +5,7 @@ const { typeDefs, resolvers } = require('./schemas');
 // mongoose connector
 const db = require("./config/connection");
 
+const models = require('./models')
 const app = express();
 
 const server = new ApolloServer({
