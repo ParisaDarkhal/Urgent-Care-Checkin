@@ -1,0 +1,22 @@
+{
+  "name": "urgent-care-checkin",
+  "version": "1.0.0",
+  "description": "patient = name, last name, phone number, date of birth, insurance(y/n), reason for visit",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd server && npm i && cd ../client && npm i",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cd server && nodemon server.js\" \"cd client && npm start\"",
+    "start": "npm run build && cd server && node server.js",
+    "build": "cd client && npm start",
+    "server": "cd server && nodemon server.js",
+    "client": "cd client && npm start"
+  },
+  "keywords": [],
+  "author": "PD, ES, MB",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "nodemon": "^2.0.22"
+  }
+}
