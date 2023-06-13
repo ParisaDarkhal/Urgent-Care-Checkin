@@ -16,8 +16,10 @@ const typeDefs = gql`
 
   type Appointment {
     id: ID!
-    timeSlot: String!
-    selectedDate: String!
+    appt_date: String!
+    appt_time: String!
+    timeSlot: String
+    referencePhoneNumber: String
     patient: Patient
   }
 
