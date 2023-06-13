@@ -22,12 +22,12 @@ const typeDefs = gql`
   }
 
   type Query {
-    patients: (appointment_id: ID) : Patient
-    appointments: (appointmentId: ID) : Appointment
+    patients(appointment_id: ID) : Patient
+    appointments(appointmentId: ID) : Appointment
   }
 
   type Mutation {
-    addPatient:(input:PatientInput):Patient
+    addPatient(input:PatientInput): Patient
     addAppointment(input: AppointmentInput): Appointment
     deleteAppointment(appointmentId:ID!): Appointment
     updateAppointment(appointmentId:ID!): Appointment

@@ -3,7 +3,9 @@ const { Patient, Appointment} = require('../models');
 const resolvers = {
 
     Query: {
-
+        appointment: async (parent, {appointmentId}) => {
+            return Appointment.findOne({_id: appointmentId})
+        }
 
 
 
@@ -37,5 +39,15 @@ const resolvers = {
     }
 };
 
+
+// addAppointment:async (parent,{AppointmentInput})=>{
+//     const appointment = await Appointment.create({AppointmentInput});
+
+//     await Patient.findOneAndUpdate(
+//         {phone_number: referenceNumber},
+//         {$push:{appointments: appointment._id}}
+//     );
+//     return appointment;
+// },
 
 module.exports = resolvers;
