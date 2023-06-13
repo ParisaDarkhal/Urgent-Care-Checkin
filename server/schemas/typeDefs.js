@@ -18,7 +18,6 @@ const typeDefs = gql`
     id: ID!
     appt_date: Date
     appt_time: Date
-    timeSlot: String!
     patientId: Patient
   }
 

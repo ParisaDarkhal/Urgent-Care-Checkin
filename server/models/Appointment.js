@@ -1,4 +1,5 @@
 const { Schema, model} = require("mongoose");
+
 const appointmentSchema = new Schema({
     appt_date: {
         type: Date,
@@ -6,9 +7,14 @@ const appointmentSchema = new Schema({
     },
     appt_time: {
         type: Date,
-        // added
         required: true,
     },
+    //Parisa's suggestion
+//     timeSlot: {
+//         type: Date,
+        // added
+//         required: true,
+//     },
     //Parisa's suggestion
     // I dont think we dont need it MB
     // timeSlot: {
