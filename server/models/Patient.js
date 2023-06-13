@@ -1,59 +1,57 @@
-const { Schema , model } = require('moongoose');
+const { Schema, model } = require("moongoose");
 
 const patientSchema = new Schema({
-    first_name : {
-        type: String,
-        trim: true,
-        required: true,
-    },
+  first_name: {
+    type: String,
+    trim: true,
+    required: true,
+  },
 
-    last_name: {
-        type: String,
-        trim: true,
-        required: true,
-    },
+  last_name: {
+    type: String,
+    trim: true,
+    required: true,
+  },
 
-    date_of_birth: {
-        type: Date,
-        required: true,
-    }, 
+  date_of_birth: {
+    type: Date,
+    required: true,
+  },
 
-    gender: {
-        type: String,
-        required: true,
-    },
+  gender: {
+    type: String,
+    required: true,
+  },
 
-    phone_number: {
-        type: Number,
-        required: true,
-    },
+  phone_number: {
+    type: String,
+    required: true,
+  },
 
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: [/.+@.+\..+/, 'Must match an email address!'],
-    },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, "Must match an email address!"],
+  },
 
-    insurance: {
-        type: Boolean,
-        required: true,
-    },
+  insurance: {
+    type: Boolean,
+    required: true,
+  },
 
-    reason_for_visit: {
-        type: String,
-        required: true,
-        maxlength: 255,
-    },
+  reason_for_visit: {
+    type: String,
+    required: true,
+    maxlength: 255,
+  },
 
-    appointment: {
-        type: Schema.Types.objectId,
-        ref: "Appointment",
-
-    },
+  appointment: {
+    type: Schema.Types.objectId,
+    ref: "Appointment",
+  },
 });
 
 const Patient = model("Patient", patientSchema);
 
 module.exports = Patient;
-
