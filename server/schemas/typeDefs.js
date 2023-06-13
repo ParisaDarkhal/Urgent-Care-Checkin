@@ -16,18 +16,20 @@ const typeDefs = gql`
 
   type Appointment {
     id: ID!
-    timeSlot: String!
-    selectedDate: String!
+    appt_date: String!
+    appt_time: String!
+    timeSlot: String
+    referencePhoneNumber: String
     patient: Patient
   }
 
   type Query {
-    patients: (appointment_id: ID) : Patient
-    appointments: (appointmentId: ID) : Appointment
+    patients(appointment_id: ID) : Patient
+    appointments(appointmentId: ID) : Appointment
   }
 
   type Mutation {
-    addPatient:(input:PatientInput):Patient
+    addPatient(input:PatientInput): Patient
     addAppointment(input: AppointmentInput): Appointment
     deleteAppointment(appointmentId:ID!): Appointment
     updateAppointment(appointmentId:ID!): Appointment

@@ -1,11 +1,12 @@
 const { Schema, model, default: mongoose } = require("mongoose");
+
 const appointmentSchema = new Schema({
     appt_date: {
         type: Date,
         default: Date.now,
     },
     appt_time: {
-        type: Data,
+        type: Date,
     },
     //Parisa's suggestion
     timeSlot: {
