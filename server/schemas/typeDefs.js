@@ -32,6 +32,7 @@ const typeDefs = gql`
     deletePatient(id: ID!): Patient
 
 
+    
     createAppointment(input: AppointmentInput): Appointment
     updateAppointment(id: ID!, input: AppointmentInput): Appointment
     deleteAppointment(id: ID!): Appointment

@@ -18,13 +18,12 @@ const appointmentSchema = new Schema({
     required: true,
   },
   //End Parisa's suggestion
+//   appoitment ID id the phone number
+    appointmentId: {
+        type: String,
+        required: true,
+    }
 
-  patient: [
-    {
-      type: Schema.types.ObjectId,
-      ref: "Patient",
-    },
-  ],
 });
 
 // Parisa's suggestion
