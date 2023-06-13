@@ -3,6 +3,7 @@ const express = require("express");
 // mongoose connector
 const db = require("./config/connection");
 
+const models = require('./models')
 const app = express();
 
 const PORT = process.env.PORT || 3001;

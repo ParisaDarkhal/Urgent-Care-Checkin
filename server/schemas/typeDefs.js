@@ -16,9 +16,11 @@ const typeDefs = gql`
 
   type Appointment {
     id: ID!
+    appt_date: Date
+    appt_time: Date
     timeSlot: String!
-    selectedDate: String!
-    patient: Patient
+    referencePhoneNumber: String!
+    patientId: Patient
   }
 
   type Query {
@@ -46,12 +48,11 @@ const typeDefs = gql`
   }
 
   input AppointmentInput {
-    appt_date: String
-    appt_time: String
-    timeSlot: String!
+    appt_date: Date
+    appt_time: Date
     patient:ID
     referencePhoneNumber: String
     }
 `;
-
-module.exports = typeDefs;
+// was added to 53
+// timeSlot: String!
