@@ -3,10 +3,12 @@ const { Patient, Appointment } = require('../models');
 const resolvers = {
 
     Query: {
-
-
-
-
+        appointment: async (parent, {appointmentId}) => {
+            return Appointment.findOne({_id: appointmentId})
+        },
+        patient: async (parent, {patientId}) => {
+            return Appointment.findOne({_id: patientId})
+        }
     },
 
     Mutation: {
@@ -18,8 +20,8 @@ const resolvers = {
             const appointment = await Appointment.create({ AppointmentInput });
 
             await Patient.findOneAndUpdate(
-                { phone_number: referenceNumber },
-                { $addToSet: { appointments: appointment._id } }
+                { id: Patient._id },
+                { $push: { appointments: appointment._id } }
             );
             return appointment;
         },
@@ -32,15 +34,6 @@ const resolvers = {
                 {$addToSet: {appointments: {AppointmentInput}}}
                 )
         },
-        // updateClass: async (parent, { id, building }) => {
-        //     // Find and update the matching class using the destructured args
-        //     return await Class.findOneAndUpdate(
-        //       { _id: id }, 
-        //       { building },
-        //       // Return the newly updated object instead of the original
-        //       { new: true }
-        //     );
-        //   }
         // **TEST**
         updateAppointment: async (parent, {id, appt_time }) => {
             return await Appointment.findOneAndUpdate(
@@ -54,5 +47,14 @@ const resolvers = {
 
 
 
+// addAppointment:async (parent,{AppointmentInput})=>{
+//     const appointment = await Appointment.create({AppointmentInput});
+
+//     await Patient.findOneAndUpdate(
+//         {phone_number: referenceNumber},
+//         {$push:{appointments: appointment._id}}
+//     );
+//     return appointment;
+// },
 
 module.exports = resolvers;

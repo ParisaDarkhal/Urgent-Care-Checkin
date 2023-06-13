@@ -19,23 +19,23 @@ const typeDefs = gql`
     appt_date: Date
     appt_time: Date
     timeSlot: String!
-    referencePhoneNumber: String!
     patientId: Patient
   }
 
   type Query {
-    patients: (appointment_id: ID) : Patient
-    appointments: (appointmentId: ID) : Appointment
+    patients(appointment_id: ID) : Patient
+    appointments(appointmentId: ID) : Appointment
   }
 
   type Mutation {
-    addPatient:(input:PatientInput):Patient
+    addPatient(input:PatientInput): Patient
     addAppointment(input: AppointmentInput): Appointment
     deleteAppointment(appointmentId:ID!): Appointment
     updateAppointment(appointmentId:ID!): Appointment
 }
 
   input PatientInput {
+
     first_name: String!
     last_name: String!
     date_of_birth: String!
@@ -51,7 +51,6 @@ const typeDefs = gql`
     appt_date: Date
     appt_time: Date
     patient:ID
-    referencePhoneNumber: String
     }
 `;
 // was added to 53
