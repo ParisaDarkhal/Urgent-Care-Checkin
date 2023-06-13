@@ -11,7 +11,7 @@ const typeDefs = gql`
     email: String!
     insurance: Boolean!
     reason_for_visit: String!
-    appointment: [Appointment]
+    appointments: [Appointment]
   }
 
   type Appointment {
@@ -27,16 +27,11 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createPatient(input: PatientInput): Patient
-    createAppointment(): Appointment
-    deletePatient(id: ID!): Patient
-
-
-    
-    createAppointment(input: AppointmentInput): Appointment
-    updateAppointment(id: ID!, input: AppointmentInput): Appointment
-    deleteAppointment(id: ID!): Appointment
-  }
+    addPatient:(input:PatientInput):Patient
+    addAppointment(input: AppointmentInput): Appointment
+    deleteAppointment(appointmentId:ID!): Appointment
+    updateAppointment(appointmentId:ID!): Appointment
+}
 
   input PatientInput {
     first_name: String!
@@ -47,16 +42,16 @@ const typeDefs = gql`
     email: String!
     insurance: Boolean!
     reason_for_visit: String!
-    appointment: ID
+    appointments: ID
   }
 
   input AppointmentInput {
     appt_date: String
     appt_time: String
     timeSlot: String!
-    selectedDate: String!
-    patient: ID
-  }
+    patient:ID
+    referencePhoneNumber: String
+    }
 `;
 
 module.exports = typeDefs;
