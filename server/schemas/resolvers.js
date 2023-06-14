@@ -54,21 +54,5 @@ const resolvers = {
 };
 module.exports = resolvers;
 
-// **TEST MARJORIE  another **
-//         updateAppointment: async (parent, {id, appt_time }) => {
-//             return await Appointment.findOneAndUpdate(
-//                 { _id: id },
-//                 { appt_time },
-//                 {new: true}
 
-// ELIZABETHA
-// addAppointment:async (parent,{AppointmentInput})=>{
-//     const appointment = await Appointment.create({AppointmentInput});
-
-//     await Patient.findOneAndUpdate(
-//         {phone_number: referenceNumber},
-//         {$push:{appointments: appointment._id}}
-//     );
-//     return appointment;
-// },
 
