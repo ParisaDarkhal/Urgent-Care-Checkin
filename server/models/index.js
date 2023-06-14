@@ -1,6 +1,4 @@
-
 const Patient = require('./Patient');
-const Appointmnet = require('./Appointment');
+const Appointment = require('./Appointment');
 
-
-module.exports = { Patient, Appointmnet };
+module.exports = { Patient, Appointment };
