@@ -22,7 +22,9 @@ const typeDefs = gql`
   }
 
   type Query {
-    patient(appointment_id: ID) : Patient
+    patients : [Patient]
+    patient(patientId: ID) : Patient
+    appointments : [Appointment]
     appointment(appointmentId: ID) : Appointment
   }
 
@@ -31,6 +33,7 @@ const typeDefs = gql`
     addAppointment(input: AppointmentInput): Appointment
     deleteAppointment(appointmentId:ID!): Appointment
     updateAppointment(appointmentId:ID!): Appointment
+    updateAppointmentMa(appointmentId:ID!, appt_time): Appointment
   }
 
   input PatientInput {
@@ -52,3 +55,4 @@ const typeDefs = gql`
   }
 `;
 module.exports = typeDefs;
+
