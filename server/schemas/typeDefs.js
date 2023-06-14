@@ -13,7 +13,7 @@ const typeDefs = gql`
     reason_for_visit: String!
     appointments: [Appointment]
   }
-
+  
   type Appointment {
     id: ID!
     appt_date: String!
@@ -51,6 +51,4 @@ const typeDefs = gql`
     patient:ID
   }
 `;
-// was added to 53
-// timeSlot: String!
 module.exports = typeDefs;
