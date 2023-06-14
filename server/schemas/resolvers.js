@@ -3,15 +3,27 @@ const { Patient, Appointment } = require('../models');
 const resolvers = {
 
     Query: {
+
+//Find appointments
+        appointments: async () => {
+            return Appointment.find()
+},
 // Find apointment by ID (for page #3)
-        appointment: async (parent, { appointmentId }) => {
-            return Appointment.findOne({ _id: appointmentId })
+        appointment: async (parent, { id }) => {
+            return Appointment.findOne(id)
         },
-// Find patient by ID 
-        patient: async (parent, { patientId }) => {
-            return Appointment.findOne({ _id: patientId })
-        }
+// Find patients
+        patients: async () => {
+            return Patient.find()
+        },
+
+// Find patient by ID
+        patient: async (parent, {id}) => {
+            return Patient.findOne(id)
+        },
+
     },
+// 
 
     Mutation: {
 // Add a patient
