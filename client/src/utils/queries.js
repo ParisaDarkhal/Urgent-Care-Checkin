@@ -34,3 +34,4 @@ export const VIEW_APPOINTMENTS = gql `
     }
 
 `
+
