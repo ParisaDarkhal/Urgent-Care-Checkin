@@ -15,18 +15,16 @@ const resolvers = {
 
     Mutation: {
 // Add a patient
-        addPatient: async (parent, { PatientInput }) => {
-            const patient = await Patient.create({ PatientInput });
+        addPatient: async (parent, { input }) => {
+            const patient = await Patient.create(input);
             return patient;
         },
 // Add a appointment
-        addAppointment: async (parent, { AppointmentInput }) => {
-            const appointment = await Appointment.create({ AppointmentInput });
-
-            await Patient.findOneAndUpdate(
-                { id: Patient._id },
-                { $push: { appointments: appointment._id } }
-            );
+        addAppointment: async (parent, { input }) => {
+            const appointment = await Appointment.create(input);
+            const patient = await Patient.findById(input.patient);
+            patient.appointments.push(appointment);
+            await patient.save();
             return appointment;
         },
 // Delete an appointment

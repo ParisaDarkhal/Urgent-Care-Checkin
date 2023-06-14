@@ -48,7 +48,7 @@ const typeDefs = gql`
   input AppointmentInput {
     appt_date: String!
     appt_time: String!
-    patient:ID
+    patientId:ID
   }
 `;
 module.exports = typeDefs;
