@@ -13,17 +13,17 @@ const typeDefs = gql`
     reason_for_visit: String!
     appointments: [Appointment]
   }
-
+  
   type Appointment {
     id: ID!
-    appt_date: Date
-    appt_time: Date
+    appt_date: String!
+    appt_time: String!
     patientId: Patient
   }
 
   type Query {
-    patients(appointment_id: ID) : Patient
-    appointments(appointmentId: ID) : Appointment
+    patient(appointment_id: ID) : Patient
+    appointment(appointmentId: ID) : Appointment
   }
 
   type Mutation {
@@ -31,10 +31,9 @@ const typeDefs = gql`
     addAppointment(input: AppointmentInput): Appointment
     deleteAppointment(appointmentId:ID!): Appointment
     updateAppointment(appointmentId:ID!): Appointment
-}
+  }
 
   input PatientInput {
-
     first_name: String!
     last_name: String!
     date_of_birth: String!
@@ -47,10 +46,9 @@ const typeDefs = gql`
   }
 
   input AppointmentInput {
-    appt_date: Date
-    appt_time: Date
+    appt_date: String!
+    appt_time: String!
     patient:ID
-    }
+  }
 `;
-// was added to 53
-// timeSlot: String!
+module.exports = typeDefs;

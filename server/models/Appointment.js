@@ -1,14 +1,22 @@
-const { Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
+const dateFormat = require('../utils/dateFormat');
+
+
 
 const appointmentSchema = new Schema({
     appt_date: {
         type: Date,
-        default: Date.now,
+        required: true,
     },
     appt_time: {
         type: Date,
         required: true,
     },
+}
+);
+const Appointment = model("Appointment", appointmentSchema);
+module.exports = Appointment;
+
     //Parisa's suggestion
 //     timeSlot: {
 //         type: Date,
@@ -28,10 +36,4 @@ const appointmentSchema = new Schema({
     //     required: true,
     // }
     // // ITHINK WE HAVE TO UPDATE DEF LINE 62 WITH REFERENCEid
-});
 
-// Parisa's suggestion
-const Appointment = model("Appointment", appointmentSchema);
-// End Parisa's suggestion
-
-module.exports = Appointment;

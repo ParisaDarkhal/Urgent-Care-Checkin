@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const patientSchema = new Schema({
   first_name: {
@@ -12,7 +12,6 @@ const patientSchema = new Schema({
     trim: true,
     required: true,
   },
-
   date_of_birth: {
     type: Date,
     required: true,
@@ -46,14 +45,16 @@ const patientSchema = new Schema({
     maxlength: 255,
   },
 
-  appointments:[
+  appointments: [
     {
-        type: Schema.Types.objectId,
-        ref: "Appointment",
-      },
-  ] 
+      type: Schema.Types.ObjectId,
+      ref: 'Appointment',
+    },
+  ]
 });
 
 const Patient = model("Patient", patientSchema);
 
 module.exports = Patient;
+
+
