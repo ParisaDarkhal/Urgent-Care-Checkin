@@ -44,15 +44,25 @@ const resolvers = {
             return Appointment.findOneAndDelete({ _id: appointmentId })
         },
 // Reschedule an appoitment
-        updateAppointment: async (parent, { appointmentId }) => {
+        // updateAppointment: async (parent, { appointmentId, input }) => {
+        //     return Appointment.findOneAndUpdate(
+        //         { _id: appointmentId },
+        //         { $addToSet: { appointments: { AppointmentInput } } }
+        //     )
+        // },
+        updateAppointment: async (parent, { appointmentId, input }) => {
             return Appointment.findOneAndUpdate(
-                { _id: appointmentId },
-                { $addToSet: { appointments: { AppointmentInput } } }
-            )
+                {_id: appointmentId}, 
+                input
+            , {
+                new: true,
+            })
         },
     },
 };
 module.exports = resolvers;
+
+
 
 
 
