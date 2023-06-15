@@ -1,5 +1,14 @@
 import { gql } from "@apollo/client";
 
+
+export const ADD_APPOINTMENT = gql`
+  mutation addAppointment($input: AppointmentInput) {
+    addAppointment(input: $input) {
+      appt_date
+      appt_time
+      id
+      patient {
+
 export const CREATE_PATIENT = gql`
   mutation addPatient($input: PatientInput) {
     addPatient(input: $input) {
@@ -15,6 +24,7 @@ export const CREATE_PATIENT = gql`
       appointments {
         appt_date
         appt_time
+
         id
       }
     }
