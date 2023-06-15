@@ -9,7 +9,7 @@ const typeDefs = gql`
     gender: String!
     phone_number: String!
     email: String!
-    insurance: Boolean!
+    insurance: String!
     reason_for_visit: String!
     appointments: [Appointment]
   }
@@ -42,7 +42,7 @@ const typeDefs = gql`
     gender: String!
     phone_number: String!
     email: String!
-    insurance: Boolean!
+    insurance: String!
     reason_for_visit: String!
     appointments: ID
   }

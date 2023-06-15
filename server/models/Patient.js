@@ -35,7 +35,7 @@ const patientSchema = new Schema({
   },
 
   insurance: {
-    type: Boolean,
+    type: String,
     required: true,
   },
 

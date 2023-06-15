@@ -12,7 +12,7 @@ const UpdateAppt = () => {
             referencenumber: ''
         }
     );
-    const [deleteAppointment, {data, loading, error  }] = useMutation(DELETE_APPT);
+    const [deleteAppointment, { data, loading, error }] = useMutation(DELETE_APPT);
 
     const handleInputChange = (e) => {
 
@@ -20,7 +20,7 @@ const UpdateAppt = () => {
 
         console.log("Did the state update?", confirmationInput)
 
-        setConfirmationInput({ ...confirmationInput, çname: value });
+        setConfirmationInput({ ...confirmationInput, name: value });
         console.log(confirmationInput);
 
     }
@@ -29,9 +29,10 @@ const UpdateAppt = () => {
         e.preventDefault();
         console.log('deleting appointment with id:', confirmationInput.name);
         try {
-            const  response  = await deleteAppointment({
-             variables: {appointmentId: confirmationInput.name} } )
-             console.log(response);
+            const response = await deleteAppointment({
+                variables: { appointmentId: confirmationInput.name }
+            })
+            console.log(response);
             console.log('delete worked', confirmationInput);
         } catch (err) {
             console.log(err)
@@ -39,20 +40,21 @@ const UpdateAppt = () => {
     };
 
     return (
-        <form onSubmit={deleteFormSubmit} >
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Enter your confirmation number: </label>
-                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    name="referencenumber"
-                    value={confirmationInput.referencenumber}
-                    onChange={handleInputChange} />
-            </div>
+        <div>
+            <form onSubmit={deleteFormSubmit} >
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Enter your confirmation number: </label>
+                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        name="referencenumber"
+                        value={confirmationInput.referencenumber}
+                        onChange={handleInputChange} />
+                </div>
 
-            <button type="submit" 
-            >Submit</button>
-        </form>
+                <button type="submit"
+                >Submit</button>
+            </form>
+        </div>
     );
-
 };
 
 export default UpdateAppt;

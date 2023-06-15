@@ -32,30 +32,31 @@ const resolvers = {
             return patient;
         },
         // // Add a appointment
-        //         addAppointment: async (parent, { input }) => {
-        //             const appointment = await Appointment.create(input);
-        //             const patient = await Patient.findById(input.patient);
-        //             patient.appointments.push(appointment);
-        //             await patient.save();
-        //             return appointment;
-        //         },
-        // Add a appointment -MARJORIE
+                addAppointment: async (parent, { input }) => {
+                    const appointment = await Appointment.create(input);
+                    const patient = await Patient.findById(input.patient);
+                    patient.appointments.push(appointment);
+                    await patient.save();
+                    return appointment;
+                },
+   
+        // Delete an appointment--------
+        // deleteAppointment: async (parent, { appointmentId }) => {
+        //     console.log("this is the AppointmentID is ",appointmentId);
 
-        addAppointment: async (parent, { input }) => {
-            const appointment = await Appointment.create(input);
-            console.log(input.patient)
-            const patient = await Patient.findById(input.patient);
-            console.log(patient)
-            patient.appointments.push(appointment);
-            const savepatient = await patient.save();
-            console.log(savepatient)
-            return { appointment, savepatient };
-        },
+        //     const deleteAppt = await Appointment.findOneAndDelete({ _id: appointmentId })
+        //     if(!deleteAppt){
+        //         throw new Error('apppointment not found') 
+        //         console.log("this is appt deleteaapt",deleteAppt);
+    
+        //     }
+        //     return deleteAppt;
+         
+        // },
 
-
-        // Delete an appointment
+// hopefule right
         deleteAppointment: async (parent, { appointmentId }) => {
-            console.log("this is the pptID",appointmentId);
+            console.log("this is the AppointmentID is ",appointmentId);
 
             const deleteAppt = await Appointment.findOneAndDelete({ _id: appointmentId })
             if(!deleteAppt){
@@ -66,6 +67,7 @@ const resolvers = {
             return deleteAppt;
          
         },
+        // ---------
     
         // Reschedule an appoitment
         // updateAppointment: async (parent, { appointmentId, input }) => {
@@ -82,7 +84,6 @@ const resolvers = {
                     new: true,
                 })
         },
-
     },
 };
 module.exports = resolvers;
