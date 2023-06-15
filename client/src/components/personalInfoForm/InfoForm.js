@@ -31,8 +31,6 @@ const InfoForm = () => {
     event.preventDefault();
 
     try {
-      // Execute mutation and pass in defined parameter data as variables
-
       const { data } = await addPatient({
         variables: { input: { ...formState } },
       });
@@ -42,16 +40,16 @@ const InfoForm = () => {
       console.error(err);
     }
 
-    // setFormState({
-    //   first_name: "",
-    //   last_name: "",
-    //   date_of_birth: "",
-    //   gender: "",
-    //   phone_number: "",
-    //   email: "",
-    //   insurance: "",
-    //   reason_for_visit: "",
-    // });
+    setFormState({
+      first_name: "",
+      last_name: "",
+      date_of_birth: "",
+      gender: "",
+      phone_number: "",
+      email: "",
+      insurance: "",
+      reason_for_visit: "",
+    });
   };
 
   return (
@@ -84,20 +82,20 @@ const InfoForm = () => {
                 action="#"
               >
                 <div className="row">
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 my-2">
                     <div className="form-group">
                       <input
                         name="first_name"
                         id="firstName"
                         type="text"
                         className="form-control"
-                        placeholder="Name"
+                        placeholder="First Name"
                         value={formState.first_name}
                         onChange={handleInputChange}
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 my-2">
                     <div className="form-group">
                       <input
                         name="last_name"
@@ -110,7 +108,7 @@ const InfoForm = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 my-2">
                     <div className="form-group">
                       <input
                         name="date_of_birth"
@@ -123,7 +121,7 @@ const InfoForm = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 my-2">
                     <div className="form-group">
                       <select
                         className="form-control"
@@ -138,7 +136,7 @@ const InfoForm = () => {
                       </select>
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 my-2">
                     <div className="form-group">
                       <input
                         name="phone_number"
@@ -151,7 +149,7 @@ const InfoForm = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 my-2">
                     <div className="form-group">
                       <input
                         name="email"
@@ -164,7 +162,7 @@ const InfoForm = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 my-2">
                     <div className="form-group">
                       <select
                         name="insurance"
@@ -180,7 +178,7 @@ const InfoForm = () => {
                     </div>
                   </div>{" "}
                 </div>
-                <div className="form-group-2 mb-4">
+                <div className="form-group-2 mb-4 my-2">
                   <textarea
                     name="reason_for_visit"
                     id="message"
@@ -192,11 +190,10 @@ const InfoForm = () => {
                   ></textarea>
                 </div>
                 <button
-                  className="btn btn-main btn-round-full"
-                  //   href="confirmation.html"
+                  className="btn btn-main btn-round-full btn-success px-4"
                   type="submit"
                 >
-                  Make Appoinment<i className="icofont-simple-right ml-2"></i>
+                  Next<i className="icofont-simple-right ml-2"></i>
                 </button>
               </form>
             </div>
