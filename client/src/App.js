@@ -9,6 +9,8 @@ import {
 } from "@apollo/client"; //
 import TimeSlots from "./components/dateTimeSlots/DateTimeSlots";
 
+import InfoForm from "./components/personalInfoForm/InfoForm";
+
 const client = new ApolloClient({
   uri: "http://localhost:3001/graphql", //only for local testing
   cache: new InMemoryCache(),
@@ -17,8 +19,14 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+
+      <div className="App">
+        <InfoForm />
+      </div>
+
       <div className="App">Hello</div>
       <TimeSlots />
+
     </ApolloProvider>
   );
 }
