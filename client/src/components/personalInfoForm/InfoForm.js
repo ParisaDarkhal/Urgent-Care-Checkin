@@ -36,7 +36,8 @@ const InfoForm = () => {
       const { data } = await addPatient({
         variables: { input: { ...formState } },
       });
-      navigate("/checkIn/timeSlots");
+
+      navigate("/bookAppointment/timeSlots");
     } catch (err) {
       console.error(err);
     }

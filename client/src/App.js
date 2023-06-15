@@ -25,8 +25,8 @@ function App() {
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <Routes>
-            <Route path="/checkIn" element={<InfoForm />} />
-            <Route path="/checkIn/timeSlots" element={<TimeSlots />} />
+            <Route path="/bookAppointment" element={<InfoForm />} />
+            <Route path="/bookAppointment/timeSlots" element={<TimeSlots />} />
             <Route path="/confirmation" element={<AptConfirmation />} />
           </Routes>
         </div>
