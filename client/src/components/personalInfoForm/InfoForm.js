@@ -17,7 +17,6 @@ const InfoForm = () => {
     reason_for_visit: "",
   });
 
-  // Invoke `useMutation()` hook to return a Promise-based function and data about the ADD_PROFILE mutation
   const [addPatient, { error }] = useMutation(CREATE_PATIENT);
 
   const handleInputChange = (event) => {
@@ -33,11 +32,12 @@ const InfoForm = () => {
 
     try {
       // Execute mutation and pass in defined parameter data as variables
+
       const { data } = await addPatient({
-        variables: { formState },
+        variables: { input: { ...formState } },
       });
 
-      window.location.reload();
+      //   window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -191,12 +191,13 @@ const InfoForm = () => {
                     onChange={handleInputChange}
                   ></textarea>
                 </div>
-                <a
+                <button
                   className="btn btn-main btn-round-full"
-                  href="confirmation.html"
+                  //   href="confirmation.html"
+                  type="submit"
                 >
                   Make Appoinment<i className="icofont-simple-right ml-2"></i>
-                </a>
+                </button>
               </form>
             </div>
           </div>
