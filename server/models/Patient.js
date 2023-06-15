@@ -1,4 +1,4 @@
-const { Schema, model  } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const patientSchema = new Schema({
   first_name: {
@@ -35,7 +35,7 @@ const patientSchema = new Schema({
   },
 
   insurance: {
-    type: Boolean,
+    type: String,
     required: true,
   },
 
@@ -48,13 +48,11 @@ const patientSchema = new Schema({
   appointments: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Appointment',
+      ref: "Appointment",
     },
-  ]
+  ],
 });
 
 const Patient = model("Patient", patientSchema);
 
 module.exports = Patient;
-
-

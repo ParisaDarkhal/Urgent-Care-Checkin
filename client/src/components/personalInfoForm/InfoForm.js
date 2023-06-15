@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
 import { CREATE_PATIENT } from "../../utils/mutations";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 const InfoForm = () => {
-  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     first_name: "",
     last_name: "",
@@ -37,7 +35,7 @@ const InfoForm = () => {
         variables: { input: { ...formState } },
       });
 
-      navigate("/bookAppointment/timeSlots");
+      //   window.location.reload();
     } catch (err) {
       console.error(err);
     }

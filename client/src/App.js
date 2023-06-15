@@ -1,12 +1,18 @@
 import logo from "./logo.svg";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   HttpLink,
-} from "@apollo/client";
- //
+} from "@apollo/client"; //
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import TimeSlots from "./components/dateTimeSlots/DateTimeSlots";
+import InfoForm from "./components/personalInfoForm/InfoForm";
+import AptConfirmation from "./components/aptConfirmation/confirmation";
 import UpdateAppt from "./components/UpdateAppt";
 
 const client = new ApolloClient({
@@ -17,10 +23,16 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-    <div className="App">  Hello
-    </div>
-    <UpdateAppt/>
-
+      <Router>
+        <div className="flex-column justify-flex-start min-100-vh">
+          <Routes>
+            <Route path="/bookAppointment" element={<InfoForm />} />
+            <Route path="/bookAppointment/timeSlots" element={<TimeSlots />} />
+            <Route path="/confirmation" element={<AptConfirmation />} />
+            <Route path="/updateAppt" element={ <UpdateAppt/>}/>
+          </Routes>
+        </div>
+      </Router>
     </ApolloProvider>
   );
 }

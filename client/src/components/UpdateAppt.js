@@ -20,7 +20,7 @@ const UpdateAppt = () => {
 
         console.log("Did the state update?", confirmationInput)
 
-        setConfirmationInput({ ...confirmationInput, çname: value });
+        setConfirmationInput({ ...confirmationInput, name: value });
         console.log(confirmationInput);
 
     }
