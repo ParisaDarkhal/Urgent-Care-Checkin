@@ -7,6 +7,8 @@ import {
   HttpLink,
 } from "@apollo/client"; //
 
+import InfoForm from "./components/personalInfoForm/InfoForm";
+
 const client = new ApolloClient({
   uri: "http://localhost:3001/graphql", //only for local testing
   cache: new InMemoryCache(),
@@ -15,14 +17,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-    <div className="App">
-     Hello
-    </div>
+      <div className="App">
+        <InfoForm />
+      </div>
     </ApolloProvider>
   );
 }
-
-
-
 
 export default App;
