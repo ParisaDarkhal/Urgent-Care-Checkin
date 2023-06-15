@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-
 export const ADD_APPOINTMENT = gql`
   mutation addAppointment($input: AppointmentInput) {
     addAppointment(input: $input) {
@@ -8,6 +7,11 @@ export const ADD_APPOINTMENT = gql`
       appt_time
       id
       patient {
+        id
+      }
+    }
+  }
+`;
 
 export const CREATE_PATIENT = gql`
   mutation addPatient($input: PatientInput) {
