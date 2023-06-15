@@ -2,6 +2,8 @@ import React, { useState } from "react";
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from "@apollo/client";
 import { CREATE_PATIENT } from "../../utils/mutations";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 const InfoForm = () => {
   const [formState, setFormState] = useState({
