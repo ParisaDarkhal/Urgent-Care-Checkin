@@ -1,4 +1,5 @@
 import logo from "./logo.svg";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import {
   ApolloClient,
@@ -6,6 +7,7 @@ import {
   ApolloProvider,
   HttpLink,
 } from "@apollo/client"; //
+import TimeSlots from "./components/dateTimeSlots/DateTimeSlots";
 
 import InfoForm from "./components/personalInfoForm/InfoForm";
 
@@ -17,9 +19,14 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+
       <div className="App">
         <InfoForm />
       </div>
+
+      <div className="App">Hello</div>
+      <TimeSlots />
+
     </ApolloProvider>
   );
 }
