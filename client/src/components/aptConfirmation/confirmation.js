@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { VIEW_PATIENT } from "../../utils/queries";
@@ -19,6 +21,7 @@ const AptConfirmation = () => {
   console.log("the appointment is", appointment.appointments[0].appt_date);
 
   return (
+    <div> <Navbar/>
     <section className="section confirmation">
       <div className="container">
         <div className="row justify-content-center">
@@ -44,6 +47,8 @@ const AptConfirmation = () => {
         </div>
       </div>
     </section>
+    <Footer/>
+    </div>
   );
 };
 
