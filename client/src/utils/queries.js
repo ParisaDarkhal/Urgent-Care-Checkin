@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-
 // export const VIEW_APPOINTMENTS = gql`
 //   query Query($patientId: ID) {
 //     patient(patientId: $patientId) {
@@ -14,6 +13,20 @@ import { gql } from "@apollo/client";
 //     }
 //   }
 // `;
+
+export const VIEW_PATIENT = gql`
+  query viewPatientById($patientId: ID) {
+    patient(patientId: $patientId) {
+      first_name
+      last_name
+      appointments {
+        appt_date
+        appt_time
+        id
+      }
+    }
+  }
+`;
 
 export const VIEW_APPOINTMENTS = gql`
   query viewAppointment($appointmentId: ID) {

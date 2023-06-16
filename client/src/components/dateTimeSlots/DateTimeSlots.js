@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../utils/mutations";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 export default function TimeSlots() {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState(-1);
   const [chosenTimeSlot, setChosenTimeSlot] = useState(null);
   const [addAppointment, { error }] = useMutation(ADD_APPOINTMENT);
-  const userIdForTest = "648a0329a93c6d363e0716d1";
+  const { patientId } = useParams();
+  console.log("patient? ", patientId);
+  // const userIdForTest = "648a0329a93c6d363e0716d1";
 
   // Generate time slots for a given day
   const generateTimeSlots = (date) => {
@@ -38,18 +43,17 @@ export default function TimeSlots() {
           input: {
             appt_date: chosenTimeSlot,
             appt_time: chosenTimeSlot,
-            patient: userIdForTest,
+            patient: patientId,
           },
         },
       });
-      console.log(data);
+      console.log("what is tis in datetime", data);
+      navigate(`/confirmation/${patientId}`);
     } catch (err) {
       console.error("======Error", err);
       return;
     }
   };
-
-  console.log("selected :>> ", selected);
 
   return (
     <Container>

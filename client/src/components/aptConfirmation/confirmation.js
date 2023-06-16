@@ -1,29 +1,43 @@
 import React, { useState } from "react";
-
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { VIEW_APPOINTMENTS } from "../../utils/queries";
+import { VIEW_PATIENT } from "../../utils/queries";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 const AptConfirmation = () => {
-  const { loading, data } = useQuery(VIEW_APPOINTMENTS);
-  const appointment = data?.appointment || [];
+  const { patientId } = useParams();
+  const { loading, data } = useQuery(VIEW_PATIENT, {
+    variables: { patientId: patientId },
+  });
+  console.log("what is data in confirmation", data);
+  const appointment = data?.patient || [];
   console.log(appointment);
   if (appointment.length === 0) {
     return <h3> No appointment has been booked</h3>;
   }
+  console.log("the appointment is", appointment.appointments[0].appt_date);
 
   return (
-    <section class="section confirmation">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="confirmation-content text-center">
-              <i class="icofont-check-circled text-lg text-color-2"></i>
-              <h2 class="mt-3 mb-4">Thank you for your appoinment</h2>
+    <section className="section confirmation">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="confirmation-content text-center">
+              <i className="icofont-check-circled text-lg text-color-2"></i>
+              <h2 className="mt-3 mb-4">Thank you for your appoinment</h2>
               <p>
                 {appointment.first_name} {appointment.last_name} is booked on
-                {appointment.appt_date} at {appointment.appt_time}
+                {appointment.appointments.map((appointment, index) => {
+                  const { appt_date, appt_time } = appointment;
+                  return (
+                    <div key={index}>
+                      <p>Appointment Date: {appt_date}</p>
+                      <p>Appointment Time: {appt_time}</p>
+                    </div>
+                  );
+                })}
+                ;{/* {appointment.appointments[i].appt_date} */}
               </p>
             </div>
           </div>
