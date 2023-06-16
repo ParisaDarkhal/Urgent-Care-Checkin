@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { CREATE_PATIENT } from "../../utils/mutations";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
-
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 const InfoForm = () => {
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
@@ -55,6 +56,8 @@ const InfoForm = () => {
   };
 
   return (
+    <div>
+    <Navbar/>
     <section className="appoinment section">
       <div className="container">
         <div className="row">
@@ -203,6 +206,8 @@ const InfoForm = () => {
         </div>
       </div>
     </section>
+    <Footer/>
+    </div>
   );
 };
 
