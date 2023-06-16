@@ -38,13 +38,6 @@
   }
 }
 
-/* ------------ */
-/**
- * WEBSITE: https://themefisher.com
- * TWITTER: https://twitter.com/themefisher
- * FACEBOOK: https://www.facebook.com/themefisher
- * GITHUB: https://github.com/themefisher/
- */
 
 /*=== MEDIA QUERY ===*/
 @import url("https://fonts.googleapis.com/css?family=Exo:500,600,700|Roboto&display=swap");
@@ -596,7 +589,6 @@ a:focus {
 }
 
 .bg-1 {
-  /* background: url("../images/bg/22.jpg") no-repeat 50% 50%; */
   background-size: cover;
   position: relative;
 }
@@ -605,7 +597,6 @@ a:focus {
   position: relative;
   overflow: hidden;
   background: #fff;
-  /* background: url("../images/bg/slider-.jpg") no-repeat; */
   background-size: cover;
   min-height: 550px;
 }
@@ -965,7 +956,6 @@ a:focus {
 }
 
 .cta {
-  /* background: url("../images/bg/bg-4.jpg") no-repeat 50% 50%; */
   background-size: cover;
   position: relative;
 }
@@ -992,16 +982,6 @@ a:focus {
   margin-bottom: -80px;
 }
 
-/* .cta-2 {
-  background: url("../images/bg/cta-bg.png") no-repeat;
-  background-position: center center;
-} */
-/* 
-.cta-page {
-  background: url("../images/bg/banner.jpg") no-repeat;
-  background-size: cover;
-  position: relative;
-} */
 
 .testimonial {
   position: relative;
@@ -1693,11 +1673,3 @@ a:focus {
 
 
 
-
-
-/**
- * WEBSITE: https://themefisher.com
- * TWITTER: https://twitter.com/themefisher
- * FACEBOOK: https://www.facebook.com/themefisher
- * GITHUB: https://github.com/themefisher/
- */

@@ -28,15 +28,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/bookAppointment" element={<InfoForm />} />
-            <Route
-              path="/bookAppointment/timeSlots/:patientId"
-              element={<TimeSlots />}
-            />
-            <Route
-              path="/confirmation/:patientId"
-              element={<AptConfirmation />}
-            />
-            <Route path="/updateAppointment" element={<CancelAppt />} />
+
+            <Route path="/bookAppointment/timeSlots/:patientId" element={<TimeSlots />}/>
+            <Route path="/confirmation/:patientId" element={<AptConfirmation />}/>
+            <Route path="/cancelAppointment" element={<CancelAppt/>}/>
+
           </Routes>
         </div>
       </Router>
