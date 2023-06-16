@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -23,13 +24,9 @@ const Main = () => {
                                     Walk-in any time, 365 days a year
                                 </p>
                                 <div className="btn-container ">
-                                    <a
-                                        href="bookAppointment"
-                                        target="_blank"
-                                        className="btn btn-main-2 btn-icon btn-round-full"
-                                    >
-                                        Make appoinment <i className="icofont-simple-right ml-2  " />
-                                    </a>
+                                    <Link to='/bookAppointment' className="btn btn-main btn-round-full" >
+                                        Make appoinment 
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -50,9 +47,9 @@ const Main = () => {
                                     <p className="mb-4">
                                         Check-In below to let us know when you would like to be seen
                                     </p>
-                                    <a href="appoinment.html" className="btn btn-main btn-round-full">
-                                        Make a appoinment
-                                    </a>
+                                    <Link to='/cancelAppointment' className="btn btn-main btn-round-full" >
+                                        Cancel your appointment
+                                    </Link>
                                 </div>
                                 <div className="feature-item mb-5 mb-lg-0">
                                     <div className="feature-icon mb-4">
