@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 // calling the mutation fom the mutatuion folder
-import { DELETE_APPT } from '../utils/mutations';
+import { DELETE_APPT } from '../../utils/mutations';
 
 
 const UpdateAppt = () => {
