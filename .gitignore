@@ -131,3 +131,4 @@ node_modules
 .yarn/install-state.gz
 .pnp.*
 package-lock.json
+client/package-lock.json
