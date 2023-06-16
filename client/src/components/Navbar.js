@@ -57,12 +57,12 @@ return(
                Update your appointment
             <ul className="dropdown-menu" aria-labelledby="dropdown02">
               <li>
-                <Link to="/cancelAppoitment" className="dropdown-item">
+                <Link to="/cancelAppointment" className="dropdown-item">
                 reschedule your appointment here
                 </Link>
               </li>
               <li>
-              <Link to="/"  className="dropdown-item">
+              <Link to="/cancelAppointment"  className="dropdown-item">
                 cancel your appointment here
                 </Link>
               </li>
