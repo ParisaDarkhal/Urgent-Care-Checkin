@@ -32,15 +32,15 @@ const AptConfirmation = () => {
               <p>
                 {appointment.first_name} {appointment.last_name} is booked on
                 {appointment.appointments.map((appointment, index) => {
-                  const { appt_date, appt_time } = appointment;
+                  const { appt_date, appt_time, id } = appointment;
                   return (
                     <div key={index}>
-                      <p>Appointment Date: {appt_date}</p>
-                      <p>Appointment Time: {appt_time}</p>
+                      <div>Appointment Date: {appt_date}</div>
+                      <div>Appointment Time: {appt_time} </div>
+                      <div>Your appointment confirmation number is: {id}</div>
                     </div>
                   );
                 })}
-                ;{/* {appointment.appointments[i].appt_date} */}
               </p>
             </div>
           </div>
