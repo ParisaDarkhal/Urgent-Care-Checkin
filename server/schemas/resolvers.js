@@ -39,19 +39,18 @@ const resolvers = {
             return appointment;
           },
 
-        // Delete an appointment
+        // Delete an appointment 
         deleteAppointment: async (parent, { appointmentId }) => {
             console.log("this is the AppointmentID is ",appointmentId);
 
             const deleteAppt = await Appointment.findOneAndDelete({ _id: appointmentId })
             if(!deleteAppt){
                 throw new Error('apppointment not found') 
-                console.log("this is appt deleteaapt",deleteAppt);
-    
+                console.log("this is appt deleteaapt",deleteAppt);   
             }
             return deleteAppt;
-         
         },
+
         updateAppointment: async (parent, { appointmentId, input }) => {
             return Appointment.findOneAndUpdate({ _id: appointmentId }, input, {
               new: true,

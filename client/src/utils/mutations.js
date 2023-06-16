@@ -34,11 +34,19 @@ export const CREATE_PATIENT = gql`
     }
   }
 `;
+// -----CURRENT
+// export const DELETE_APPT = gql`
+// mutation deleteAppointment($appointmentId: ID!) {
+//   deleteAppointment(appointmentId: $appointmentId) {
+//     id
+//   }
+// }
+// `;
 export const DELETE_APPT = gql`
 mutation deleteAppointment($appointmentId: ID!) {
   deleteAppointment(appointmentId: $appointmentId) {
     id
   }
 }
-`;
+`
 
