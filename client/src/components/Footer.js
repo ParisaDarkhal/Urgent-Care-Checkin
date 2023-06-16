@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -24,19 +25,19 @@ const Footer = () => {
                             <div className="divider mb-4" />
                             <ul className="list-unstyled footer-menu lh-35">
                                 <li>
-                                    <a href="#!">Surgery </a>
+                                Surgery 
                                 </li>
                                 <li>
-                                    <a href="#!">Wome's Health</a>
+                                    Wome's Health
                                 </li>
                                 <li>
-                                    <a href="#!">Radiology</a>
+                                    Radiology
                                 </li>
                                 <li>
-                                    <a href="#!">Cardioc</a>
+                                    Cardioc
                                 </li>
                                 <li>
-                                    <a href="#!">Medicine</a>
+                                    Medicine
                                 </li>
                             </ul>
                         </div>
@@ -47,19 +48,19 @@ const Footer = () => {
                             <div className="divider mb-4" />
                             <ul className="list-unstyled footer-menu lh-35">
                                 <li>
-                                    <a href="#!">Terms &amp; Conditions</a>
+                                    Terms &amp; Conditions
                                 </li>
                                 <li>
-                                    <a href="#!">Privacy Policy</a>
+                                    Privacy Policy
                                 </li>
                                 <li>
-                                    <a href="#!">Company Support </a>
+                                   Company Support 
                                 </li>
                                 <li>
-                                    <a href="#!">FAQuestions</a>
+                                    FAQuestions
                                 </li>
                                 <li>
-                                    <a href="#!">Company Licence</a>
+                                   Company Licence
                                 </li>
                             </ul>
                         </div>
@@ -83,7 +84,7 @@ const Footer = () => {
                                     <span className="h6 mb-0">Mon to Fri : 08:30 - 18:00</span>
                                 </div>
                                 <h4 className="mt-2">
-                                    <a href="tel:+23-345-67890">+233-456-6588</a>
+                                    +233-456-6588
                                 </h4>
                             </div>
                         </div>
@@ -114,7 +115,7 @@ const Footer = () => {
                     </div>
                     <div className="row">
                         <div className="col-lg-4">
-                            <a className="backtop scroll-top-to" href="#top">
+                            <a className="backtop scroll-top-to">
                                 <i className="icofont-long-arrow-up" />
                             </a>
                         </div>

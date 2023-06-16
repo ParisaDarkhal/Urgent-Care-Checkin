@@ -31,7 +31,7 @@ function App() {
             <Route path="/bookAppointment" element={<InfoForm />} />
             <Route path="/bookAppointment/timeSlots" element={<TimeSlots />} />
             <Route path="/confirmation" element={<AptConfirmation />} />
-            <Route path="/updateAppointment" element={<CancelAppt/>}/>
+            <Route path="/cancelAppointment" element={<CancelAppt/>}/>
           </Routes>
         </div>
       </Router>
