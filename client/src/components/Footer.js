@@ -115,9 +115,6 @@ const Footer = () => {
                     </div>
                     <div className="row">
                         <div className="col-lg-4">
-                            <a className="backtop scroll-top-to">
-                                <i className="icofont-long-arrow-up" />
-                            </a>
                         </div>
                     </div>
                 </div>
