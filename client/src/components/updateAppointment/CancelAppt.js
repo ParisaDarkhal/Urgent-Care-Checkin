@@ -23,7 +23,7 @@ const CancelAppt = () => {
 
         console.log("Did the state update?", confirmationInput)
 
-        setConfirmationInput({ ...confirmationInput, name: value });
+        setConfirmationInput({ ...confirmationInput, [name]: value});
         console.log(confirmationInput);
 
     }
@@ -33,7 +33,7 @@ const CancelAppt = () => {
         console.log('deleting appointment with id:', confirmationInput.name);
         try {
             const response = await deleteAppointment({
-                variables: { appointmentId: confirmationInput.name }
+                variables: { appointmentId: confirmationInput.referencenumber }
             })
             console.log(response);
             console.log('delete worked', confirmationInput);
@@ -69,8 +69,8 @@ const CancelAppt = () => {
 
                                 <form onSubmit={deleteFormSubmit} >
                                     <div className="mb-3">
-                                        <label htmlFor="exampleInputEmail1" className="form-label">Enter your confirmation number: </label>
-                                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                        <label className="form-label">Enter your confirmation number: </label>
+                                        <input type="text" 
                                             name="referencenumber"
                                             value={confirmationInput.referencenumber}
                                             onChange={handleInputChange} />
