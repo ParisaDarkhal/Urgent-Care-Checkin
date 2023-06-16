@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Navbar from '../Navbar';
+import Footer from '../Footer';
+
 import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../utils/mutations";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -56,6 +59,8 @@ export default function TimeSlots() {
   };
 
   return (
+    <div>
+      <Navbar/>
     <Container>
       <h5>Please chose a time for your appointment.</h5>
       <Row>
@@ -91,5 +96,7 @@ export default function TimeSlots() {
         </Col>
       </Row>
     </Container>
+    <Footer/>
+    </div>
   );
 }
