@@ -46,7 +46,7 @@ const Main = () => {
                                         <i className="icofont-surgeon-alt" />
                                     </div>
                                     <span>Virtual Clinic</span>
-                                    <h4 className="mb-3">Online Appoinment</h4>
+                                    <h4 className="mb-3">Need to update your appoinment?</h4>
                                     <p className="mb-4">
                                         Check-In below to let us know when you would like to be seen
                                     </p>

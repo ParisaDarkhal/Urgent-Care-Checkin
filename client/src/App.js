@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TimeSlots from "./components/dateTimeSlots/DateTimeSlots";
 import InfoForm from "./components/personalInfoForm/InfoForm";
 import AptConfirmation from "./components/aptConfirmation/confirmation";
-import UpdateAppt from "./components/updateAppointment/CancelAppt";
+import CancelAppt from "./components/updateAppointment/CancelAppt";
 import Main from "./components/Main";
 const client = new ApolloClient({
   uri: "http://localhost:3001/graphql", //only for local testing
@@ -31,7 +31,7 @@ function App() {
             <Route path="/bookAppointment" element={<InfoForm />} />
             <Route path="/bookAppointment/timeSlots" element={<TimeSlots />} />
             <Route path="/confirmation" element={<AptConfirmation />} />
-            <Route path="/updateAppointment" element={<UpdateAppt/>}/>
+            <Route path="/updateAppointment" element={<CancelAppt/>}/>
           </Routes>
         </div>
       </Router>

@@ -1679,6 +1679,17 @@ a:focus {
   min-width: auto;
 
 }
+.bgSerg{
+  position: relative;
+    overflow: hidden;
+    background: "background";
+    background: url("./images/22.jpg") no-repeat;
+    background-size: cover;
+    min-height: 500px;
+}
+.bgSergText{
+  color: #000;
+}
 /*# sourceMappingURL=style.css.map */
 
 /* ------ */
