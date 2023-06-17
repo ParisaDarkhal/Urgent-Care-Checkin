@@ -47,6 +47,7 @@ export default function TimeSlots() {
             appt_date: chosenTimeSlot,
             appt_time: chosenTimeSlot,
             patient: patientId,
+            
           },
         },
       });

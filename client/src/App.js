@@ -14,6 +14,7 @@ import TimeSlots from "./components/dateTimeSlots/DateTimeSlots";
 import InfoForm from "./components/personalInfoForm/InfoForm";
 import AptConfirmation from "./components/aptConfirmation/confirmation";
 import CancelAppt from "./components/updateAppointment/CancelAppt";
+import RescheduleAppt from "./components/updateAppointment/RescheduleAppt";
 import Main from "./components/Main";
 const client = new ApolloClient({
   uri: "http://localhost:3001/graphql", //only for local testing
@@ -32,6 +33,7 @@ function App() {
             <Route path="/bookAppointment/timeSlots/:patientId" element={<TimeSlots />}/>
             <Route path="/confirmation/:patientId" element={<AptConfirmation />}/>
             <Route path="/cancelAppointment" element={<CancelAppt/>}/>
+            <Route path="/rescheduleAppointment" element={<RescheduleAppt/>}/>
 
           </Routes>
         </div>

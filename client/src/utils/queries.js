@@ -47,3 +47,12 @@ export const VIEW_APPOINTMENTS = gql`
     }
   }
 `;
+
+export const GET_APPOINTMENTS = gql`
+  query appointmentsByDate($appt_date: String) {
+    appointmentsByDate(appt_date: $appt_date) {
+      appt_date
+      appt_time
+    }
+  }
+`;

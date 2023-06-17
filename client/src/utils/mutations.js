@@ -49,4 +49,11 @@ mutation deleteAppointment($appointmentId: ID!) {
   }
 }
 `
-
+export const RESCHEDULE_APPT = gql`
+ mutation UpdateAppointment($appointmentId: ID!, $input: AppointmentInput) {
+  updateAppointment(appointmentId: $appointmentId, input: $input) {
+    id
+    appt_time
+    appt_date
+  }
+}`;
