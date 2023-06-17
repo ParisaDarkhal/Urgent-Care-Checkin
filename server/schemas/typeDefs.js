@@ -26,13 +26,14 @@ const typeDefs = gql`
     patient(patientId: ID): Patient
     appointments: [Appointment]
     appointment(appointmentId: ID): Appointment
+    appointmentsByDate(appt_date: String): [Appointment]
   }
 
   type Mutation {
     addPatient(input: PatientInput): Patient
     addAppointment(input: AppointmentInput): Appointment
     deleteAppointment(appointmentId: ID!): Appointment
-    updateAppointment(appointmentId:ID!, input: AppointmentInput): Appointment
+    updateAppointment(appointmentId: ID!, input: AppointmentInput): Appointment
   }
 
   input PatientInput {

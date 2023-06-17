@@ -24,10 +24,7 @@ const InfoForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(name);
-    console.log(value);
     setFormState({ ...formState, [name]: value });
-    console.log(formState);
   };
 
   const handleFormSubmit = async (event) => {
@@ -37,7 +34,6 @@ const InfoForm = () => {
       const { data } = await addPatient({
         variables: { input: { ...formState } },
       });
-      console.log("info please", data);
       navigate(`/bookAppointment/timeSlots/${data.addPatient.id}`);
     } catch (err) {
       console.error(err);
@@ -93,6 +89,7 @@ const InfoForm = () => {
                           name="first_name"
                           id="firstName"
                           type="text"
+                          required
                           className="form-control"
                           placeholder="First Name"
                           value={formState.first_name}
@@ -106,6 +103,7 @@ const InfoForm = () => {
                           name="last_name"
                           id="lastName"
                           type="text"
+                          required
                           className="form-control"
                           placeholder="Last Name"
                           value={formState.last_name}
@@ -119,6 +117,7 @@ const InfoForm = () => {
                           name="date_of_birth"
                           id="dateOfBirth"
                           type="text"
+                          required
                           className="form-control"
                           placeholder="dd/mm/yy"
                           value={formState.date_of_birth}
@@ -132,6 +131,7 @@ const InfoForm = () => {
                           className="form-control"
                           name="gender"
                           id="gender"
+                          required
                           value={formState.gender}
                           onChange={handleInputChange}
                         >
@@ -147,6 +147,7 @@ const InfoForm = () => {
                           name="phone_number"
                           id="phone"
                           type="text"
+                          required
                           className="form-control"
                           placeholder="Phone Number"
                           value={formState.phone_number}
@@ -160,6 +161,7 @@ const InfoForm = () => {
                           name="email"
                           id="email"
                           type="email"
+                          required
                           className="form-control"
                           placeholder="johnsmith@gmail.com"
                           value={formState.email}
@@ -173,6 +175,7 @@ const InfoForm = () => {
                           name="insurance"
                           className="form-control"
                           id="insurance"
+                          required
                           value={formState.insurance}
                           onChange={handleInputChange}
                         >
