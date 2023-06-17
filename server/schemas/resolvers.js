@@ -10,6 +10,12 @@ const resolvers = {
     appointment: async (parent, { appointmentId }) => {
       return Appointment.findById(appointmentId);
     },
+
+    // Find apointment by date of today
+    appointmentsByDate: async (parent, { appt_date }) => {
+      return Appointment.find({ appt_date });
+    },
+
     // Find patients
     patients: async () => {
       return Patient.find().populate("appointments");
