@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Navbar from '../Navbar';
-import Footer from '../Footer';
+import { gql, useQuery } from "@apollo/client";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 import { useMutation } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../utils/mutations";
+import { GET_APPOINTMENTS } from "../../utils/queries";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
@@ -15,43 +17,89 @@ export default function TimeSlots() {
   const [chosenTimeSlot, setChosenTimeSlot] = useState(null);
   const [addAppointment, { error }] = useMutation(ADD_APPOINTMENT);
   const { patientId } = useParams();
-  console.log("patient? ", patientId);
-  // const userIdForTest = "648a0329a93c6d363e0716d1";
+  const currentDate = new Date();
+
+  /////////////to convert date
+  const convertDate = (today) => {
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = "0" + dd;
+    if (mm < 10) mm = "0" + mm;
+
+    const formattedToday = mm + "-" + dd + "-" + yyyy;
+    return formattedToday;
+  };
+
+  /////////////////////////////
+  // Fetch existing appointments from the database
+  const { loading, data } = useQuery(GET_APPOINTMENTS, {
+    variables: {
+      appt_date: convertDate(currentDate),
+    },
+  });
+  if (loading) return <div>Loading ...</div>;
+
+  ////////////////////////////
 
   // Generate time slots for a given day
-  const generateTimeSlots = (date) => {
+  const generateTimeSlots = () => {
     const timeSlots = [];
     const startHour = 9; // 9 AM
     const endHour = 17; // 5 PM
-    const currentDate = new Date(date);
+
     currentDate.setHours(startHour, 0, 0, 0); // Set starting time
     while (currentDate.getHours() < endHour) {
       timeSlots.push(new Date(currentDate));
       currentDate.setHours(currentDate.getHours() + 1);
     }
-    return timeSlots;
-  };
+    /////////////////////////////////////////////////////////////
 
-  const date = new Date(); // Set the desired date, might not be used in our application
+    const existingAppointments = data?.appointmentsByDate || [];
+    const takenTimeSlots = existingAppointments.map(
+      (appointment) => appointment.appt_time
+    );
+
+    const disabledTimeSlots = timeSlots.filter((timeSlot) =>
+      takenTimeSlots.some(
+        (takenSlot) => takenSlot === timeSlot.toLocaleTimeString()
+      )
+    );
+
+    return timeSlots.map((timeSlot) => ({
+      time: timeSlot,
+      isDisabled: disabledTimeSlots.some(
+        (disabledSlot) =>
+          disabledSlot.toLocaleTimeString() === timeSlot.toLocaleTimeString()
+      ),
+    }));
+
+    /////////////////////////////////////////////////////////////
+  };
 
   const handleBtnSelection = (btnIndex, item) => {
     setSelected(btnIndex);
-    setChosenTimeSlot(item.toLocaleTimeString());
+    setChosenTimeSlot(item.time.toLocaleTimeString());
   };
 
   const handleSaveBtn = async () => {
     try {
+      const currentDate = new Date(); // Get today's date
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const day = String(currentDate.getDate()).padStart(2, "0");
+      const formattedDate = `${month}-${day}-${year}`; // Format the date as "MM-DD-YYYY"
       const { data } = await addAppointment({
         variables: {
           input: {
-            appt_date: chosenTimeSlot,
+            appt_date: formattedDate, // Set today's date
             appt_time: chosenTimeSlot,
             patient: patientId,
             
           },
         },
       });
-      console.log("what is tis in datetime", data);
       navigate(`/confirmation/${patientId}`);
     } catch (err) {
       console.error("======Error", err);
@@ -61,43 +109,46 @@ export default function TimeSlots() {
 
   return (
     <div>
-      <Navbar/>
-    <Container>
-      <h5>Please chose a time for your appointment.</h5>
-      <Row>
-        {generateTimeSlots(date).map((item, index) => (
-          <Col className="d-grid gap-2 mx-auto" sm={3} key={index}>
-            {index === selected ? (
-              <Button
-                type="button"
-                className="btn btn-success my-3 p-2"
-                onClick={() => handleBtnSelection(index, item)}
-              >
-                {item.toLocaleTimeString()}{" "}
-              </Button>
-            ) : (
-              <Button
-                type="button"
-                className="btn btn-primary my-3 p-2"
-                onClick={() => handleBtnSelection(index, item)}
-              >
-                {item.toLocaleTimeString()}{" "}
-              </Button>
-            )}
+      <Navbar />
+      <Container>
+        <h5>Please chose a time for your appointment.</h5>
+        <Row>
+          {generateTimeSlots().map((item, index) => (
+            <Col className="d-grid gap-2 mx-auto" sm={3} key={index}>
+              {index === selected ? (
+                <Button
+                  type="button"
+                  className="btn btn-success my-3 p-2"
+                  onClick={() => handleBtnSelection(index, item)}
+                  disabled={item.isDisabled} // Added disabled prop
+                >
+                  {item.time.toLocaleTimeString()}{" "}
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  className="btn btn-primary my-3 p-2"
+                  onClick={() => handleBtnSelection(index, item)}
+                  disabled={item.isDisabled} // Added disabled prop
+                >
+                  {item.time.toLocaleTimeString()}{" "}
+                </Button>
+              )}
+            </Col>
+          ))}
+          <Col>
+            <Button
+              type="button"
+              className="btn btn-success my-4 p-2"
+              onClick={handleSaveBtn}
+              disabled={!chosenTimeSlot} // Disable button if no time slot is chosen
+            >
+              Save Appointment
+            </Button>
           </Col>
-        ))}
-        <Col>
-          <Button
-            type="button"
-            className="btn btn-success my-4 p-2"
-            onClick={handleSaveBtn}
-          >
-            Save Appointment
-          </Button>
-        </Col>
-      </Row>
-    </Container>
-    <Footer/>
+        </Row>
+      </Container>
+      <Footer />
     </div>
   );
 }
