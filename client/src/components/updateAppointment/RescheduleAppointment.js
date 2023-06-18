@@ -17,7 +17,6 @@ export default function RescheduleAppointment() {
   const [selected, setSelected] = useState(-1);
   const [chosenTimeSlot, setChosenTimeSlot] = useState({
     appt_time:'',
-    appt_date:''
   });
   const [updateAppointment, { error }] = useMutation(RESCHEDULE_APPT);
   const { appointmentId } = useParams();
@@ -102,7 +101,7 @@ const handleInputChange = (e) => {
   const handleSaveBtn = async (e) => {
     e.preventDefault();
     console.log("selected time: ", chosenTimeSlot);
-    console.log("referenece number", confirmationInput.referencenumber)
+    console.log("reference number", confirmationInput.referencenumber)
     try {
       const currentDate = new Date(); // Get today's date
       const year = currentDate.getFullYear();
@@ -116,12 +115,15 @@ const handleInputChange = (e) => {
           appt_date:formattedDate
         },
       });
-      console.log(data)
+      console.log(data);
+      // console.log(data.updateAppointment.appt_date);
       console.log("update worked", confirmationInput);
     } catch (err) {
       console.error("Error", err);
-      return;
     };
+    // setChosenTimeSlot({
+    //   appt_time:""
+    // })
   };
 
 

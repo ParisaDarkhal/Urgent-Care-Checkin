@@ -64,15 +64,18 @@ const resolvers = {
       console.log(appointmentId, input)
       const appointment= await Appointment.findOneAndUpdate(
         {_id: appointmentId },
-         {input}, 
+         {$set:{input:input}}, 
          { new: true,}
          );
+  
       if (!appointment){
         throw new Error("apppointment not found");
       }
          await appointment.save();
-         console.log(input);
-         return appointment;
+        
+          console.log(input);
+          return appointment;
+         
     },
   },
 };
