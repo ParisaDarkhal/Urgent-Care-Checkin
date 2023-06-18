@@ -193,6 +193,7 @@ const InfoForm = () => {
                       className="form-control"
                       rows="6"
                       placeholder="Reason For Visit"
+                      required
                       value={formState.reason_for_visit}
                       onChange={handleInputChange}
                     ></textarea>

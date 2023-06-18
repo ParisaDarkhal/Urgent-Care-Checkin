@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from '../Navbar';
-import Footer from '../Footer';
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { VIEW_PATIENT } from "../../utils/queries";
@@ -45,9 +45,8 @@ const AptConfirmation = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <Footer/>
+      </section>
+      <Footer />
     </div>
   );
 };

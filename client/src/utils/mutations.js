@@ -6,9 +6,6 @@ export const ADD_APPOINTMENT = gql`
       appt_date
       appt_time
       id
-      patient {
-        id
-      }
     }
   }
 `;
@@ -43,10 +40,9 @@ export const CREATE_PATIENT = gql`
 // }
 // `;
 export const DELETE_APPT = gql`
-mutation deleteAppointment($appointmentId: ID!) {
-  deleteAppointment(appointmentId: $appointmentId) {
-    id
+  mutation deleteAppointment($appointmentId: ID!) {
+    deleteAppointment(appointmentId: $appointmentId) {
+      id
+    }
   }
-}
-`
-
+`;

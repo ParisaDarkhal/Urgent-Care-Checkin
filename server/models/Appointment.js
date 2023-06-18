@@ -9,6 +9,11 @@ const appointmentSchema = new Schema(
       type: String,
       required: true,
     },
+
+    patient: {
+      type: Schema.Types.ObjectId,
+      ref: "Patient",
+    },
   },
   {
     collection: "appointments",
