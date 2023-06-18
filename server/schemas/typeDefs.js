@@ -18,7 +18,7 @@ const typeDefs = gql`
     id: ID!
     appt_date: String!
     appt_time: String!
-    patient: ID!
+    patient: [ID]!
   }
 
   type Query {
@@ -51,7 +51,7 @@ const typeDefs = gql`
   input AppointmentInput {
     appt_date: String!
     appt_time: String!
-    patient: ID
+    patient: ID!
   }
 `;
 module.exports = typeDefs;

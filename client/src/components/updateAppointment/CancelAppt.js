@@ -3,13 +3,10 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
 // calling the mutation fom the mutatuion folder
 import { DELETE_APPT } from "../../utils/mutations";
 
 const CancelAppt = () => {
-
-  const navigate = useNavigate();
   const [confirmationInput, setConfirmationInput] = useState({
     referencenumber: "",
   });
@@ -34,25 +31,17 @@ const CancelAppt = () => {
       });
       console.log(response);
       console.log("delete worked", confirmationInput);
-
-
-      return navigate("/");
     } catch (err) {
       console.log(err);
-      return navigate("/");
-
-    } catch (err) {
-      console.log(err);
-
     }
   };
 
   return (
     <div>
       <Navbar />
-      <section className="page-title bg-1 bgSerg">
+      <div className="page-title bg-1 bgSerg">
         <div className="overlay" />
-      </section>
+      </div>
       <section className="appoinment section ">
         <div className="container">
           <div className="row">
@@ -75,11 +64,14 @@ const CancelAppt = () => {
 
                 <form onSubmit={deleteFormSubmit}>
                   <div className="mb-3">
-                    <label className="form-label">
+                    <label htmlFor="exampleInputEmail1" className="form-label">
                       Enter your confirmation number:{" "}
                     </label>
                     <input
                       type="text"
+                      className="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
                       name="referencenumber"
                       value={confirmationInput.referencenumber}
                       onChange={handleInputChange}
