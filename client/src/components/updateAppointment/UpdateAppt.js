@@ -35,7 +35,7 @@ const UpdateAppt = () => {
       const response = await deleteAppointment({
         variables: { appointmentId: confirmationInput.referencenumber },
       });
-      console.log('did thid work?:', response, data)
+
       return navigate(`/bookAppointment/timeSlots/${data.appointment.patient}`);
       
     } catch (err) {
