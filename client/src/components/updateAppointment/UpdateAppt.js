@@ -22,8 +22,7 @@ const UpdateAppt = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setConfirmationInput({ ...confirmationInput, [name]: value });
-    refetch({ appointmentId: value });
-    console.log('value',confirmationInput)
+    // refetch({ appointmentId: value });
   };
 
   const updateFormSubmit = async (e) => {
