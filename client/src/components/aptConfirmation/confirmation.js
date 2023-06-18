@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { VIEW_PATIENT } from "../../utils/queries";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Button } from "react-bootstrap";
 
 const AptConfirmation = () => {
   const { patientId } = useParams();
