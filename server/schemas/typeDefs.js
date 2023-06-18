@@ -18,7 +18,7 @@ const typeDefs = gql`
     id: ID!
     appt_date: String!
     appt_time: String!
-    patient: Patient
+    patient: ID!
   }
 
   type Query {

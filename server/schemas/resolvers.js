@@ -11,10 +11,15 @@ const resolvers = {
       return Appointment.findById(appointmentId);
     },
 
-    // Find apointment by date of today
+    /////// Find apointment by date of today
     appointmentsByDate: async (parent, { appt_date }) => {
       return Appointment.find({ appt_date });
     },
+
+    /////// Find patient by appointment id
+    // patientByApptId: async (parent, { appointmentId }) => {
+    //   return Patient.find({ appointmentId });
+    // },
 
     // Find patients
     patients: async () => {

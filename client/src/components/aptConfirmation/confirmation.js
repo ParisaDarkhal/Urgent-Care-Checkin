@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from '../Navbar';
-import Footer from '../Footer';
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { VIEW_PATIENT } from "../../utils/queries";
@@ -21,33 +21,35 @@ const AptConfirmation = () => {
   console.log("the appointment is", appointment.appointments[0].appt_date);
 
   return (
-    <div> <Navbar/>
-    <section className="section confirmation">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-8">
-            <div className="confirmation-content text-center">
-              <i className="icofont-check-circled text-lg text-color-2"></i>
-              <h2 className="mt-3 mb-4">Thank you for your appoinment</h2>
-              <p>
-                {appointment.first_name} {appointment.last_name} is booked on
-                {appointment.appointments.map((appointment, index) => {
-                  const { appt_date, appt_time } = appointment;
-                  return (
-                    <div key={index}>
-                      <p>Appointment Date: {appt_date}</p>
-                      <p>Appointment Time: {appt_time}</p>
-                    </div>
-                  );
-                })}
-                ;{/* {appointment.appointments[i].appt_date} */}
-              </p>
+    <div>
+      {" "}
+      <Navbar />
+      <section className="section confirmation">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <div className="confirmation-content text-center">
+                <i className="icofont-check-circled text-lg text-color-2"></i>
+                <h2 className="mt-3 mb-4">Thank you for your appoinment</h2>
+                <div>
+                  {appointment.first_name} {appointment.last_name} is booked on
+                  {appointment.appointments.map((appointment, index) => {
+                    const { appt_date, appt_time } = appointment;
+                    return (
+                      <div key={index}>
+                        <p>Appointment Date: {appt_date}</p>
+                        <p>Appointment Time: {appt_time}</p>
+                      </div>
+                    );
+                  })}
+                  {/* {appointment.appointments[i].appt_date} */}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <Footer/>
+      </section>
+      <Footer />
     </div>
   );
 };

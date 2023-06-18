@@ -28,22 +28,12 @@ export const VIEW_PATIENT = gql`
   }
 `;
 
-export const VIEW_APPOINTMENTS = gql`
-  query viewAppointment($appointmentId: ID) {
-    viewAppointment(appointmentId: $appointmentId) {
+export const VIEW_APPOINTMENT = gql`
+  query appointment($appointmentId: ID) {
+    appointment(appointmentId: $appointmentId) {
       appt_date
       appt_time
-      patientId {
-        first_name
-        last_name
-        email
-        date_of_birth
-        gender
-        insurance
-        phone_number
-        id
-        reason_for_visit
-      }
+      patient
     }
   }
 `;
@@ -56,3 +46,13 @@ export const GET_APPOINTMENTS = gql`
     }
   }
 `;
+
+// export const GET_PATIENT_BY_APPT_ID = gql`
+//   query patientByApptId($appointmentId: ID) {
+//     patientByApptId(appointmentId: $appointmentId) {
+//       id
+//       first_name
+//       last_name
+//     }
+//   }
+// `;

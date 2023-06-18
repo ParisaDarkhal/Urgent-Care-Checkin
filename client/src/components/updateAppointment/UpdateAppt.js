@@ -2,43 +2,42 @@ import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 // calling the mutation fom the mutatuion folder
 import { DELETE_APPT } from "../../utils/mutations";
+import { VIEW_APPOINTMENT } from "../../utils/queries";
 
-const CancelAppt = () => {
+const UpdateAppt = () => {
   const navigate = useNavigate();
-
   const [confirmationInput, setConfirmationInput] = useState({
     referencenumber: "",
   });
-  const [deleteAppointment, { data, loading, error }] =
-    useMutation(DELETE_APPT);
+  const [deleteAppointment] = useMutation(DELETE_APPT);
+
+  const { data, loading, error, refetch } = useQuery(VIEW_APPOINTMENT, {
+    variables: { appointmentId: confirmationInput.referencenumber },
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    console.log("Did the state update?", confirmationInput);
-
     setConfirmationInput({ ...confirmationInput, [name]: value });
-    console.log(confirmationInput);
+    refetch({ appointmentId: value });
   };
 
-  const deleteFormSubmit = async (e) => {
+  const updateFormSubmit = async (e) => {
     e.preventDefault();
-    console.log("deleting appointment with id:", confirmationInput.name);
+    if (!data || !data.appointment) {
+      alert("there is no appointment with this confirmation number!");
+      return;
+    }
     try {
       const response = await deleteAppointment({
         variables: { appointmentId: confirmationInput.referencenumber },
       });
-      console.log(response);
-      console.log("delete worked", confirmationInput);
-
-      return navigate("/");
+      return navigate(`/bookAppointment/timeSlots/${data.appointment.patient}`);
     } catch (err) {
       console.log(err);
-      return navigate("/");
     }
   };
 
@@ -62,18 +61,19 @@ const CancelAppt = () => {
             </div>
             <div className="col-lg-8">
               <div className="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
-                <h2 className="mb-2 title-color">Cancel your appoitnment</h2>
+                <h2 className="mb-2 title-color">Update your appoitnment</h2>
                 <p className="mb-4">
                   We understand that things happen! Just know that you can also
                   reschedule you appoitment!
                 </p>
 
-                <form onSubmit={deleteFormSubmit}>
+                <form onSubmit={updateFormSubmit}>
                   <div className="mb-3">
                     <label className="form-label">
                       Enter your confirmation number:{" "}
                     </label>
                     <input
+                      className="form-control"
                       type="text"
                       name="referencenumber"
                       value={confirmationInput.referencenumber}
@@ -82,7 +82,7 @@ const CancelAppt = () => {
                   </div>
 
                   <button className="btn btn-main btn-round-full" type="submit">
-                    Submit
+                    Reschedule
                   </button>
                 </form>
               </div>
@@ -96,4 +96,4 @@ const CancelAppt = () => {
   );
 };
 
-export default CancelAppt;
+export default UpdateAppt;

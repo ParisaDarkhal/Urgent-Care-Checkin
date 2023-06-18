@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
@@ -40,6 +40,7 @@ export default function TimeSlots() {
     },
   });
   if (loading) return <div>Loading ...</div>;
+  console.log("data :>> ", data);
 
   ////////////////////////////
 
@@ -90,6 +91,7 @@ export default function TimeSlots() {
       const month = String(currentDate.getMonth() + 1).padStart(2, "0");
       const day = String(currentDate.getDate()).padStart(2, "0");
       const formattedDate = `${month}-${day}-${year}`; // Format the date as "MM-DD-YYYY"
+      console.log("patientId :>> ", patientId);
       const { data } = await addAppointment({
         variables: {
           input: {
