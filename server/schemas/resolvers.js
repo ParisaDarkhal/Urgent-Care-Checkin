@@ -61,9 +61,18 @@ const resolvers = {
     },
 
     updateAppointment: async (parent, { appointmentId, input }) => {
-      return Appointment.findOneAndUpdate({ _id: appointmentId }, input, {
-        new: true,
-      });
+      console.log(appointmentId, input)
+      const appointment= await Appointment.findOneAndUpdate(
+        {_id: appointmentId },
+         {input}, 
+         { new: true,}
+         );
+      if (!appointment){
+        throw new Error("apppointment not found");
+      }
+         await appointment.save();
+         console.log(input);
+         return appointment;
     },
   },
 };

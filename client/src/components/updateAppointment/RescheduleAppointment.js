@@ -1,108 +1,161 @@
 import React, { useState } from "react";
-// Import the `useMutation()` hook from Apollo Client
-import { useMutation } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
-import { RESCHEDULE_APPT } from "../../utils/mutations";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import {useQuery } from "@apollo/client";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+
+import { useMutation } from "@apollo/client";
+import { RESCHEDULE_APPT } from "../../utils/mutations";
+import { GET_APPOINTMENTS } from "../../utils/queries";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-
-const RescheduleAppt = () => {
-    
-    
-    const [selected, setSelected] = useState(-1);
-    const [chosenTimeSlot, setChosenTimeSlot] = useState(null);
-    // const { patientId } = useParams();
-
-    const generateTimeSlots = (date) => {
-        const timeSlots = [];
-        const startHour = 9; // 9 AM
-        const endHour = 17; // 5 PM
-        const currentDate = new Date(date);
-        currentDate.setHours(startHour, 0, 0, 0); // Set starting time
-        while (currentDate.getHours() < endHour) {
-          timeSlots.push(new Date(currentDate));
-          currentDate.setHours(currentDate.getHours() + 1);
-        }
-        return timeSlots;
-      };
-    
-      const date = new Date(); // Set the desired date, might not be used in our application
-    
-      const handleBtnSelection = (btnIndex, item) => {
-        setSelected(btnIndex);
-        setChosenTimeSlot(item.toLocaleTimeString());
-        console.log(chosenTimeSlot)
-      };
-
+    // ---------------
+export default function RescheduleAppointment() {
   const navigate = useNavigate();
-  const [formStateinput, setFormStateinput] = useState({
-appointmentId:''  });
-  const [formStatetime, setFormStatetime] = useState({
-    appt_time:"",
-    appt_date:"",
+  const [selected, setSelected] = useState(-1);
+  const [chosenTimeSlot, setChosenTimeSlot] = useState({
+    appt_time:'',
+    appt_date:''
   });
   const [updateAppointment, { error }] = useMutation(RESCHEDULE_APPT);
+  const { appointmentId } = useParams();
+  const currentDate = new Date();
+//--------handle input
+const [confirmationInput, setConfirmationInput] = useState({
+  referencenumber: "",
+});
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    console.log(name);
-    console.log(value);
-    setFormStateinput({ ...formStateinput, [name]: value });
-    console.log(formStateinput);
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+
+  console.log("ENTERING NUMBER:", confirmationInput);
+
+  setConfirmationInput({ ...confirmationInput, [name]: value });
+  console.log("YOU ENTERED", confirmationInput);
+};
+//--------END ------handle input
+  /////////////to convert date
+  const convertDate = (today) => {
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = "0" + dd;
+    if (mm < 10) mm = "0" + mm;
+
+    const formattedToday = mm + "-" + dd + "-" + yyyy;
+    return formattedToday;
   };
+  /////////////////////////////
+  // Fetch existing appointments from the database
+  const { loading, data } = useQuery(GET_APPOINTMENTS, {
+    variables: {
+      appt_date: convertDate(currentDate),
+    },
+  });
+  if (loading) return <div>Loading ...</div>;
 
-  const handleSaveBtn = async (event) => {
-    event.preventDefault();
-    try {
-      const { data } = await updateAppointment({
-        variables: { input: {
-             appt_time:chosenTimeSlot,
-            appt_date: chosenTimeSlot,
-} },
-      });
-      console.log("info please", data);
-    //   navigate(`/bookAppointment/timeSlots/${data.addPatient.id}`);
-    } catch (err) {
-      console.error(err);
+  ////////////////////////////
+
+  // Generate time slots for a given day
+  const generateTimeSlots = () => {
+    const timeSlots = [];
+    const startHour = 9; // 9 AM
+    const endHour = 17; // 5 PM
+
+    currentDate.setHours(startHour, 0, 0, 0); // Set starting time
+    while (currentDate.getHours() < endHour) {
+      timeSlots.push(new Date(currentDate));
+      currentDate.setHours(currentDate.getHours() + 1);
     }
+    /////////////////////////////////////////////////////////////
 
-    setFormStatetime({
-        appt_time:"",
-        appt_date:''
-    });
+    const existingAppointments = data?.appointmentsByDate || [];
+    const takenTimeSlots = existingAppointments.map(
+      (appointment) => appointment.appt_time
+    );
+
+    const disabledTimeSlots = timeSlots.filter((timeSlot) =>
+      takenTimeSlots.some(
+        (takenSlot) => takenSlot === timeSlot.toLocaleTimeString()
+      )
+    );
+
+    return timeSlots.map((timeSlot) => ({
+      time: timeSlot,
+      isDisabled: disabledTimeSlots.some(
+        (disabledSlot) =>
+          disabledSlot.toLocaleTimeString() === timeSlot.toLocaleTimeString()
+      ),
+    }));
+
+    /////////////////////////////////////////////////////////////
   };
-    return (
-        <div>
-        <Navbar/>
-         <input type="text" className="form-control"
-            name="appointmentId"
-            value={formStateinput.appointmentId}
-            onChange={handleInputChange} /> 
+
+  const handleBtnSelection = (btnIndex, item) => {
+    setSelected(btnIndex);
+    setChosenTimeSlot(item.time.toLocaleTimeString());
+  };
+
+  const handleSaveBtn = async (e) => {
+    e.preventDefault();
+    console.log("selected time: ", chosenTimeSlot);
+    console.log("referenece number", confirmationInput.referencenumber)
+    try {
+      const currentDate = new Date(); // Get today's date
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const day = String(currentDate.getDate()).padStart(2, "0");
+      const formattedDate = `${month}-${day}-${year}`; // Format the date as "MM-DD-YYYY"
+      const  data = await updateAppointment({
+        variables: { 
+          appointmentId: confirmationInput.referencenumber,
+          appt_time: chosenTimeSlot,
+          appt_date:formattedDate
+        },
+      });
+      console.log(data)
+      console.log("update worked", confirmationInput);
+    } catch (err) {
+      console.error("Error", err);
+      return;
+    };
+  };
+
+
+  return (
+    <div>
+      <Navbar />
+      <input className="form-control"
+          type="text"
+          name="referencenumber"
+          value={confirmationInput.referencenumber}
+          onChange={handleInputChange}
+                    />
       <Container>
         <h5>Please chose a time for your appointment.</h5>
         <Row>
-          {generateTimeSlots(date).map((item, index) => (
+          {generateTimeSlots().map((item, index) => (
             <Col className="d-grid gap-2 mx-auto" sm={3} key={index}>
               {index === selected ? (
                 <Button
                   type="button"
                   className="btn btn-success my-3 p-2"
-                  value={formStatetime}
                   onClick={() => handleBtnSelection(index, item)}
+                  disabled={item.isDisabled} // Added disabled prop
                 >
-                  {/* {item.toLocaleTimeString()}{" "} */}
+                  {item.time.toLocaleTimeString()}{" "}
                 </Button>
               ) : (
                 <Button
                   type="button"
                   className="btn btn-primary my-3 p-2"
                   onClick={() => handleBtnSelection(index, item)}
+                  disabled={item.isDisabled} // Added disabled prop
                 >
-                  {item.toLocaleTimeString()}{" "}
+                  {item.time.toLocaleTimeString()}{" "}
                 </Button>
               )}
             </Col>
@@ -112,18 +165,18 @@ appointmentId:''  });
               type="button"
               className="btn btn-success my-4 p-2"
               onClick={handleSaveBtn}
+              disabled={!chosenTimeSlot}  //  Disable button if no time slot is chosen
             >
               Save Appointment
             </Button>
           </Col>
         </Row>
       </Container>
-      <Footer/>
-      </div>
-    );
-};
+      <Footer />
+    </div>
+  );
+}
 
-export default RescheduleAppt;
 
 // {/* <div>
 //             <Navbar />
@@ -170,10 +223,8 @@ export default RescheduleAppt;
 
 //             <Footer />
 //         </div> */}
-
-
-
-// ------------THIS CONSOLE LOG THE INPUT AND ALSO BUTOON DISPLAY NUMBER ENTERES
+// ------\
+  // ------------THIS CONSOLE LOG THE INPUT AND ALSO BUTOON DISPLAY NUMBER ENTERES
  // const [confirmation, setConfirmation] = useState(
     //             { referencenumber: '' });
     
@@ -190,6 +241,9 @@ export default RescheduleAppt;
     // if (loading) {
     //     return <div>LOADING.. </div>
     // }
+
+
+
 
 
     // --------------- this also worked a little lol
@@ -306,4 +360,68 @@ export default RescheduleAppt;
 //       <Footer/>
 //       </div>
 //     );
+// };
+//  --------
+    
+// const [selected, setSelected] = useState(-1);
+// const [chosenTimeSlot, setChosenTimeSlot] = useState(null);
+// // const { patientId } = useParams();
+
+// const generateTimeSlots = (date) => {
+//     const timeSlots = [];
+//     const startHour = 9; // 9 AM
+//     const endHour = 17; // 5 PM
+//     const currentDate = new Date(date);
+//     currentDate.setHours(startHour, 0, 0, 0); // Set starting time
+//     while (currentDate.getHours() < endHour) {
+//       timeSlots.push(new Date(currentDate));
+//       currentDate.setHours(currentDate.getHours() + 1);
+//     }
+//     return timeSlots;
+//   };
+
+//   const date = new Date(); // Set the desired date, might not be used in our application
+
+//   const handleBtnSelection = (btnIndex, item) => {
+//     setSelected(btnIndex);
+//     setChosenTimeSlot(item.toLocaleTimeString());
+//     console.log(chosenTimeSlot)
+//   };
+
+// const navigate = useNavigate();
+// const [formStateinput, setFormStateinput] = useState({
+// appointmentId:''  });
+// const [formStatetime, setFormStatetime] = useState({
+// appt_time:"",
+// appt_date:"",
+// });
+// const [updateAppointment, { error }] = useMutation(RESCHEDULE_APPT);
+
+// const handleInputChange = (event) => {
+// const { name, value } = event.target;
+// console.log(name);
+// console.log(value);
+// setFormStateinput({ ...formStateinput, [name]: value });
+// console.log(formStateinput);
+// };
+
+// const handleSaveBtn = async (event) => {
+// event.preventDefault();
+// try {
+//   const { data } = await updateAppointment({
+//     variables: { input: {
+//          appt_time:chosenTimeSlot,
+//         appt_date: chosenTimeSlot,
+// } },
+//   });
+//   console.log("info please", data);
+// //   navigate(`/bookAppointment/timeSlots/${data.addPatient.id}`);
+// } catch (err) {
+//   console.error(err);
+// }
+
+// setFormStatetime({
+//     appt_time:"",
+//     appt_date:''
+// });
 // };

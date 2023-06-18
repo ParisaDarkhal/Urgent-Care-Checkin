@@ -96,7 +96,6 @@ export default function TimeSlots() {
             appt_date: formattedDate, // Set today's date
             appt_time: chosenTimeSlot,
             patient: patientId,
-            
           },
         },
       });

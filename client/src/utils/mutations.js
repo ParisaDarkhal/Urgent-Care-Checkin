@@ -49,11 +49,28 @@ mutation deleteAppointment($appointmentId: ID!) {
   }
 }
 `
+// export const RESCHEDULE_APPT = gql`
+//  mutation updateAppointment($appointmentId: ID!, $input: AppointmentInput) {
+//   updateAppointment(appointmentId: $appointmentId, input: $input) {
+//     id
+//     appt_time
+//     appt_date
+//   }
+// }`;
+// export const RESCHEDULE_APPT = gql`
+// mutation updateAppointment($appointmentId: ID!, $apptDate: String!, $apptTime: String!) {
+//   updateAppointment(appointmentId: $appointmentId, appt_date: $apptDate, appt_time: $apptTime) {
+//     appt_date
+//     appt_time
+//     id
+//   }
+// }`;
+
 export const RESCHEDULE_APPT = gql`
- mutation UpdateAppointment($appointmentId: ID!, $input: AppointmentInput) {
+mutation updateAppointment($appointmentId: ID!, $input: AppointmentInput) {
   updateAppointment(appointmentId: $appointmentId, input: $input) {
-    id
-    appt_time
     appt_date
+    appt_time
+    id
   }
 }`;
