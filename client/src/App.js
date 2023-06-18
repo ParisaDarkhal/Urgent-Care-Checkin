@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DateTimeSlots from "./components/dateTimeSlots/DateTimeSlots";
 import InfoForm from "./components/personalInfoForm/InfoForm";
 import AptConfirmation from "./components/aptConfirmation/confirmation";
+import CancelConfirmation from "./components/aptConfirmation/ConfirmationCanceled";
 import CancelAppt from "./components/updateAppointment/CancelAppt";
 import Main from "./components/Main";
 import UpdateAppt from "./components/updateAppointment/UpdateAppt";
@@ -28,6 +29,10 @@ function App() {
             <Route
               path="/bookAppointment/timeSlots/:patientId"
               element={<DateTimeSlots />}
+            />
+            <Route
+              path="/canceledAppointment/:patientId"
+              element={<CancelConfirmation />}
             />
             <Route
               path="/confirmation/:patientId"
