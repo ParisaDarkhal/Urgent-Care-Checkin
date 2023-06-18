@@ -21,30 +21,27 @@ const AptConfirmation = () => {
   console.log("the appointment is", appointment.appointments[0].appt_date);
 
   return (
-    <div>
-      {" "}
-      <Navbar />
-      <section className="section confirmation">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <div className="confirmation-content text-center">
-                <i className="icofont-check-circled text-lg text-color-2"></i>
-                <h2 className="mt-3 mb-4">Thank you for your appoinment</h2>
-                <div>
-                  {appointment.first_name} {appointment.last_name} is booked on
-                  {appointment.appointments.map((appointment, index) => {
-                    const { appt_date, appt_time } = appointment;
-                    return (
-                      <div key={index}>
-                        <p>Appointment Date: {appt_date}</p>
-                        <p>Appointment Time: {appt_time}</p>
-                      </div>
-                    );
-                  })}
-                  {/* {appointment.appointments[i].appt_date} */}
-                </div>
-              </div>
+    <div> <Navbar/>
+    <section className="section confirmation">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="confirmation-content text-center">
+              <i className="icofont-check-circled text-lg text-color-2"></i>
+              <h2 className="mt-3 mb-4">Thank you for your appoinment</h2>
+              <p>
+                {appointment.first_name} {appointment.last_name} is booked on
+                {appointment.appointments.map((appointment, index) => {
+                  const { appt_date, appt_time, id } = appointment;
+                  return (
+                    <div key={index}>
+                      <div>Appointment Date: {appt_date}</div>
+                      <div>Appointment Time: {appt_time} </div>
+                      <div>Your appointment confirmation number is: {id}</div>
+                    </div>
+                  );
+                })}
+              </p>
             </div>
           </div>
         </div>

@@ -119,7 +119,7 @@ const InfoForm = () => {
                           type="text"
                           required
                           className="form-control"
-                          placeholder="dd/mm/yyy"
+                          placeholder="dd/mm/yy"
                           value={formState.date_of_birth}
                           onChange={handleInputChange}
                         />

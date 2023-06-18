@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { DELETE_APPT } from "../../utils/mutations";
 
 const CancelAppt = () => {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const [confirmationInput, setConfirmationInput] = useState({
     referencenumber: "",
   });
@@ -35,10 +35,15 @@ const CancelAppt = () => {
       console.log(response);
       console.log("delete worked", confirmationInput);
 
+
       return navigate("/");
     } catch (err) {
       console.log(err);
       return navigate("/");
+
+    } catch (err) {
+      console.log(err);
+
     }
   };
 
