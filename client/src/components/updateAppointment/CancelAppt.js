@@ -3,10 +3,6 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
-=======
->>>>>>> fb2e675 (added confirmation number to the UI)
 // calling the mutation fom the mutatuion folder
 import { DELETE_APPT } from "../../utils/mutations";
 
@@ -17,14 +13,6 @@ const CancelAppt = () => {
   const [deleteAppointment, { data, loading, error }] =
     useMutation(DELETE_APPT);
 
-<<<<<<< HEAD
-  const navigate = useNavigate();
-  const [confirmationInput, setConfirmationInput] = useState({
-    referencenumber: "",
-  });
-  const [deleteAppointment, { data, loading, error }] =
-    useMutation(DELETE_APPT);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -33,35 +21,6 @@ const CancelAppt = () => {
     setConfirmationInput({ ...confirmationInput, [name]: value });
     console.log(confirmationInput);
   };
-
-  const deleteFormSubmit = async (e) => {
-    e.preventDefault();
-    console.log("deleting appointment with id:", confirmationInput.name);
-    try {
-      const response = await deleteAppointment({
-        variables: { appointmentId: confirmationInput.referencenumber },
-      });
-      console.log(response);
-      console.log("delete worked", confirmationInput);
-
-
-      return navigate("/");
-    } catch (err) {
-      console.log(err);
-      return navigate("/");
-
-    } catch (err) {
-      console.log(err);
-=======
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-
-    console.log("Did the state update?", confirmationInput);
-
-    setConfirmationInput({ ...confirmationInput, [name]: value });
-    console.log(confirmationInput);
-  };
->>>>>>> fb2e675 (added confirmation number to the UI)
 
   const deleteFormSubmit = async (e) => {
     e.preventDefault();
@@ -105,21 +64,14 @@ const CancelAppt = () => {
 
                 <form onSubmit={deleteFormSubmit}>
                   <div className="mb-3">
-<<<<<<< HEAD
-                    <label className="form-label">
-=======
                     <label htmlFor="exampleInputEmail1" className="form-label">
->>>>>>> fb2e675 (added confirmation number to the UI)
                       Enter your confirmation number:{" "}
                     </label>
                     <input
                       type="text"
-<<<<<<< HEAD
-=======
                       className="form-control"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
->>>>>>> fb2e675 (added confirmation number to the UI)
                       name="referencenumber"
                       value={confirmationInput.referencenumber}
                       onChange={handleInputChange}
