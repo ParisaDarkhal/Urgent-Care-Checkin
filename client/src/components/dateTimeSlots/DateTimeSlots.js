@@ -101,6 +101,7 @@ export default function TimeSlots() {
           },
         },
       });
+
       navigate(`/confirmation/${patientId}`);
     } catch (err) {
       console.error("======Error", err);

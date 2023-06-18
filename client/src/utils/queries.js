@@ -31,6 +31,7 @@ export const VIEW_PATIENT = gql`
 export const VIEW_APPOINTMENT = gql`
   query appointment($appointmentId: ID) {
     appointment(appointmentId: $appointmentId) {
+      id
       appt_date
       appt_time
       patient
