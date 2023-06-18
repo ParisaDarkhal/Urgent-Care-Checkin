@@ -2,35 +2,48 @@ import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 // calling the mutation fom the mutatuion folder
 import { DELETE_APPT } from "../../utils/mutations";
+import { useNavigate } from "react-router-dom";
+import { VIEW_APPOINTMENT } from "../../utils/queries";
 
 const CancelAppt = () => {
+  const navigate = useNavigate();
+
   const [confirmationInput, setConfirmationInput] = useState({
     referencenumber: "",
   });
-  const [deleteAppointment, { data, loading, error }] =
-    useMutation(DELETE_APPT);
+  const [deleteAppointment] =  useMutation(DELETE_APPT);
+
+  const { data, loading, error, refetch } = useQuery(VIEW_APPOINTMENT, {
+    variables: { appointmentId: confirmationInput.referencenumber },
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     console.log("Did the state update?", confirmationInput);
-
     setConfirmationInput({ ...confirmationInput, [name]: value });
+    refetch({ appointmentId: value });
     console.log(confirmationInput);
   };
 
   const deleteFormSubmit = async (e) => {
     e.preventDefault();
     console.log("deleting appointment with id:", confirmationInput.name);
+
+    if (!data || !data.appointment) {
+      alert("there is no appointment with this confirmation number!");
+      return;
+    }
     try {
       const response = await deleteAppointment({
         variables: { appointmentId: confirmationInput.referencenumber },
       });
       console.log(response);
       console.log("delete worked", confirmationInput);
+      return navigate(`/canceledAppointment/${data.appointment.patient}`);
+
     } catch (err) {
       console.log(err);
     }

@@ -23,6 +23,7 @@ const UpdateAppt = () => {
     const { name, value } = e.target;
     setConfirmationInput({ ...confirmationInput, [name]: value });
     refetch({ appointmentId: value });
+    console.log('value',confirmationInput)
   };
 
   const updateFormSubmit = async (e) => {
@@ -35,7 +36,9 @@ const UpdateAppt = () => {
       const response = await deleteAppointment({
         variables: { appointmentId: confirmationInput.referencenumber },
       });
+      console.log('did thid work?:', response, data)
       return navigate(`/bookAppointment/timeSlots/${data.appointment.patient}`);
+      
     } catch (err) {
       console.log(err);
     }
