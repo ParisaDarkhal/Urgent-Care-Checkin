@@ -31,7 +31,6 @@ const Home = () => {
       </div>
       <nav className="navbar navbar-expand-lg navigation" id="navbar">
         <div className="container">
-          <img src="images/logo.png" alt="" className="img-fluid" />
           <button
             className="navbar-toggler collapsed"
             type="button"

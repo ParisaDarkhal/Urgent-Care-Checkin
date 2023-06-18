@@ -31,8 +31,8 @@ const AptConfirmation = () => {
             <div className="col-lg-8">
               <div className="confirmation-content text-center">
                 <i className="icofont-check-circled text-lg text-color-2"></i>
-                <h2 className="mt-3 mb-4">Thank you for your appoinment</h2>
-                <p>
+                <h2 className="mt-3 mb-4">Thank you for your appointment</h2>
+                <div>
                   {appointment.first_name} {appointment.last_name} is booked on
                   {appointment.appointments.map((appointment, index) => {
                     const { appt_date, appt_time, id } = appointment;
@@ -44,7 +44,7 @@ const AptConfirmation = () => {
                       </div>
                     );
                   })}
-                </p>
+                </div>
               </div>
             </div>
           </div>

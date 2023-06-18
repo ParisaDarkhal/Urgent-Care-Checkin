@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
 const Footer = () => {
     return (
         <footer className="footer section gray-bg">
@@ -9,7 +8,6 @@ const Footer = () => {
                     <div className="col-lg-4 mr-auto col-sm-6">
                         <div className="widget mb-5 mb-lg-0">
                             <div className="logo mb-4">
-                                <img src="images/logo.png" alt="" className="img-fluid" />
                             </div>
                             <p className="p-4">
                                 We are committed to the health and wellness of our community. As such,
