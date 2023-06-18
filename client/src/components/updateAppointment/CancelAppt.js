@@ -39,9 +39,9 @@ const CancelAppt = () => {
   return (
     <div>
       <Navbar />
-      <section className="page-title bg-1 bgSerg">
+      <div className="page-title bg-1 bgSerg">
         <div className="overlay" />
-      </section>
+      </div>
       <section className="appoinment section ">
         <div className="container">
           <div className="row">
