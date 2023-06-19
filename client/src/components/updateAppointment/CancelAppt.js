@@ -17,9 +17,6 @@ const CancelAppt = () => {
 
   const [deleteAppointment] = useMutation(DELETE_APPT);
 
-  const [deleteAppointment] =  useMutation(DELETE_APPT);
-
-
   const { data, loading, error, refetch } = useQuery(VIEW_APPOINTMENT, {
     variables: { appointmentId: confirmationInput.referencenumber },
   });
@@ -47,16 +44,13 @@ const CancelAppt = () => {
       console.log(response);
       console.log("delete worked", confirmationInput);
 
-
       return navigate(`/canceledAppointment/${data.appointment.patient}`);
-
     } catch (err) {
       console.log(err);
       return navigate("/");
 
       return navigate(`/canceledAppointment/${data.appointment.patient}`);
-
-    } 
+    }
   };
 
   return (
