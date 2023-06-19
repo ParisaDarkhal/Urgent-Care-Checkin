@@ -15,7 +15,7 @@ import UpdateAppt from "./components/updateAppointment/UpdateAppt";
 
 
 const client = new ApolloClient({
-  uri: "graphql", //only for local testing
+  uri: "http://localhost:3001/graphql", //only for local testing
   cache: new InMemoryCache(),
 });
 
