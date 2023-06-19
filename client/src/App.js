@@ -13,7 +13,7 @@ import CancelAppt from "./components/updateAppointment/CancelAppt";
 import Main from "./components/Main";
 import UpdateAppt from "./components/updateAppointment/UpdateAppt";
 const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql", //only for local testing
+  uri: "/graphql", //only for local testing
   cache: new InMemoryCache(),
 });
 
