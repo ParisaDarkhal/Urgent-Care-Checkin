@@ -11,7 +11,7 @@ const AptConfirmation = () => {
   const { loading, data } = useQuery(VIEW_PATIENT, {
     variables: { patientId: patientId },
   });
-  
+
   console.log("what is data in confirmation", data);
   const appointment = data?.patient || [];
   console.log(appointment);
@@ -22,8 +22,8 @@ const AptConfirmation = () => {
   console.log("the appointment is", appointment.appointments[0].appt_date);
 
   return (
-    <div >
-    {" "}  
+    <div>
+      {" "}
       <Navbar />
       <section className="section confirmation">
         <div className="container">
@@ -34,16 +34,20 @@ const AptConfirmation = () => {
                 <h2 className="mt-3 mb-4">Thank you for your appointment</h2>
                 <div>
                   {appointment.first_name} {appointment.last_name} is booked on
-                  {appointment.appointments.map((appointment, index) => {
-                    const { appt_date, appt_time, id } = appointment;
-                    return (
-                      <div key={index}>
-                        <div>Appointment Date: {appt_date}</div>
-                        <div>Appointment Time: {appt_time} </div>
-                        <div>Your appointment confirmation number is: {id}</div>
-                      </div>
-                    );
-                  })}
+                  {appointment.appointments
+                    .slice(-1)
+                    .map((appointment, index) => {
+                      const { appt_date, appt_time, id } = appointment;
+                      return (
+                        <div key={index}>
+                          <div>Appointment Date: {appt_date}</div>
+                          <div>Appointment Time: {appt_time} </div>
+                          <div>
+                            Your appointment confirmation number is: {id}
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             </div>

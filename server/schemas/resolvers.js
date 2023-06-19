@@ -1,4 +1,5 @@
 const { Patient, Appointment } = require("../models");
+const { findOne } = require("../models/Patient");
 
 const resolvers = {
   Query: {
@@ -29,6 +30,11 @@ const resolvers = {
     // Find patient by ID
     patient: async (parent, { patientId }) => {
       return Patient.findById(patientId).populate("appointments");
+    },
+
+    // Find patient by email
+    patientByEmail: async (parent, { email }) => {
+      return Patient.findOne({ email });
     },
   },
   //

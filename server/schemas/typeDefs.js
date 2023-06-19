@@ -27,6 +27,7 @@ const typeDefs = gql`
     appointments: [Appointment]
     appointment(appointmentId: ID): Appointment
     appointmentsByDate(appt_date: String): [Appointment]
+    patientByEmail(email: String): Patient
   }
 
   type Mutation {
