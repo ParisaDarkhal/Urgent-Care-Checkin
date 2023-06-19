@@ -35,6 +35,8 @@ const InfoForm = () => {
         variables: { input: { ...formState } },
       });
       navigate(`/bookAppointment/timeSlots/${data.addPatient.id}`);
+      console.log(data.addPatient.id);
+      return;
     } catch (err) {
       console.error(err);
     }
