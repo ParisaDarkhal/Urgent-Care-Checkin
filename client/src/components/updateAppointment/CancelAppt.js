@@ -43,7 +43,7 @@ const CancelAppt = () => {
       console.log(response);
       console.log("delete worked", confirmationInput);
 
-      return navigate("/");
+      return navigate(`/canceledAppointment/${data.appointment.patient}`);
     } catch (err) {
       console.log(err);
       return navigate("/");

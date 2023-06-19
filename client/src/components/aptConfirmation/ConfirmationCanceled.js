@@ -22,7 +22,7 @@ const CancelConfirmation = () => {
   //   console.log("the appointment is", appointment.appointments[0].appt_date);
 
   return (
-    <div >
+    <div>
       {" "}
       <Navbar />
       <section className="section confirmation">
@@ -31,10 +31,12 @@ const CancelConfirmation = () => {
             <div className="col-lg-8">
               <div className="confirmation-content text-center">
                 <i className="icofont-check-circled text-lg text-color-2"></i>
-                <h2 className="mt-3 mb-4"> Hello {appointment.first_name} {appointment.last_name}</h2>
-                
-                  <p>Your appointment was sucessfully canceled</p>
-              
+                <h2 className="mt-3 mb-4">
+                  {" "}
+                  Hello {appointment.first_name} {appointment.last_name}
+                </h2>
+
+                <p>Your appointment was sucessfully canceled</p>
               </div>
             </div>
           </div>
