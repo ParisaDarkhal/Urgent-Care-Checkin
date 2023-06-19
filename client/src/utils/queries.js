@@ -48,6 +48,16 @@ export const GET_APPOINTMENTS = gql`
   }
 `;
 
+export const PATIENT_BY_EMAIL = gql`
+  query patientByEmail($email: String) {
+    patientByEmail(email: $email) {
+      id
+      first_name
+      last_name
+    }
+  }
+`;
+
 // export const GET_PATIENT_BY_APPT_ID = gql`
 //   query patientByApptId($appointmentId: ID) {
 //     patientByApptId(appointmentId: $appointmentId) {
