@@ -27,7 +27,7 @@ const Main = () => {
                       to="/bookAppointment"
                       className="btn btn-main btn-round-full"
                     >
-                      Make appoinment
+                      Make appointment
                     </Link>
                   </div>
                 </div>
