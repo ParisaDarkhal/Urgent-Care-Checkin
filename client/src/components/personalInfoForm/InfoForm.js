@@ -95,7 +95,7 @@ const InfoForm = () => {
 
             <div className="col-lg-8">
               <div className="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
-                <h2 className="mb-2 title-color">Book an appoinment</h2>
+                <h2 className="mb-2 title-color">Book an appointment</h2>
 
                 <div className="border border-2 p-3 shadow">
                   <h4 className="text text-success">
