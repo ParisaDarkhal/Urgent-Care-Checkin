@@ -8,12 +8,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const AptConfirmation = () => {
   const { patientId } = useParams();
-  const { loading, data } = useQuery(VIEW_PATIENT, {
+  const { loading, data, refetch } = useQuery(VIEW_PATIENT, {
     variables: { patientId: patientId },
   });
 
   console.log("what is data in confirmation", data);
   const appointment = data?.patient || [];
+  refetch();
   console.log(appointment);
 
   if (appointment.length === 0) {

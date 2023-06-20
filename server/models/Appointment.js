@@ -10,12 +10,10 @@ const appointmentSchema = new Schema(
       required: true,
     },
 
-    patient: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Patient",
-      },
-    ],
+    patient: {
+      type: Schema.Types.ObjectId,
+      ref: "Patient",
+    },
   },
   {
     collection: "appointments",
